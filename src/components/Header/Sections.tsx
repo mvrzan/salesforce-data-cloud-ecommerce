@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
+import { Text } from "@twilio-paste/core/text";
 import { Stack } from "@twilio-paste/core/stack";
 import { Button } from "@twilio-paste/core/button";
-import { useNavigate } from "react-router-dom";
 
 const Sections = () => {
   const navigate = useNavigate();
@@ -26,21 +28,31 @@ const Sections = () => {
   };
 
   return (
-    <Stack orientation="horizontal" spacing="space60">
+    <Stack orientation="horizontal" spacing="space120">
       <Button variant="link" onClick={homeClicked}>
-        Home
+        <Text as="p" fontSize="fontSize70">
+          Home
+        </Text>
       </Button>
       <Button variant="link" onClick={menClicked}>
-        Men
+        <Text as="p" fontSize="fontSize70">
+          Men
+        </Text>
       </Button>
       <Button variant="link" onClick={womenClicked}>
-        Women
+        <Text as="p" fontSize="fontSize70">
+          Women
+        </Text>
       </Button>
       <Button variant="link" onClick={jewelryClicked}>
-        Jewelry
+        <Text as="p" fontSize="fontSize70">
+          Jewelry
+        </Text>
       </Button>
       <Button variant="link" onClick={electronicsClicked}>
-        Electronics
+        <Text as="p" fontSize="fontSize70">
+          Electronics
+        </Text>
       </Button>
     </Stack>
   );
