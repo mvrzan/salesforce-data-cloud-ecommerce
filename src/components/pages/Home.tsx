@@ -4,8 +4,12 @@ import { Flex } from "@twilio-paste/core/flex";
 import { Text } from "@twilio-paste/core/text";
 
 import homeBanner from "../../assets/page-content/home_banner.png";
+import useBearStore from "../hooks/useBearStore";
 
 const Home = () => {
+  const products = useBearStore((state) => state.products);
+  console.log(products);
+
   return (
     <Box
       width="100%"
