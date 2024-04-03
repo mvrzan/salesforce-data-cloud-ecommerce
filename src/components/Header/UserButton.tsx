@@ -1,5 +1,5 @@
-import { UserIcon } from "@twilio-paste/icons/esm/UserIcon";
 import { Button } from "@twilio-paste/core/button";
+import { UserIcon } from "@twilio-paste/icons/esm/UserIcon";
 
 const UserButton = () => {
   return (

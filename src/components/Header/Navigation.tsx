@@ -1,20 +1,21 @@
-import { Heading } from "@twilio-paste/core/heading";
+import { Text } from "@twilio-paste/text";
 import { Flex } from "@twilio-paste/core/flex";
 import { Stack } from "@twilio-paste/core/stack";
 import { Button } from "@twilio-paste/core/button";
 
+import Sections from "./Sections";
 import UserButton from "./UserButton";
 import CartButton from "./CartButton";
 
 const Navigation = () => {
   return (
-    <Flex padding="space120" hAlignContent="between">
+    <Flex padding="space120" hAlignContent="between" vAlignContent="center">
       <Button variant="link">
-        <Heading as="h1" variant="heading10">
+        <Text as="h1" fontSize="fontSize90" fontWeight="fontWeightSemibold">
           Data Cloud Shopping
-        </Heading>
+        </Text>
       </Button>
-
+      <Sections />
       <Stack orientation="horizontal" spacing="space60">
         <UserButton />
         <CartButton />
