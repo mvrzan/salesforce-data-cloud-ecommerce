@@ -6,7 +6,8 @@ import { Text } from "@twilio-paste/core/text";
 import { Stack } from "@twilio-paste/core/stack";
 import { Button } from "@twilio-paste/core/button";
 
-import landingModel from "../../assets/page-content/jacketHero.webp";
+import landingModel from "../../assets/page-content/landing_page1.webp";
+import landingModel2 from "../../assets/page-content/landing_page2.png";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -22,7 +23,13 @@ const Landing = () => {
         height="50vh"
         backgroundColor="colorBackgroundPrimaryWeak"
       >
-        <Flex vertical hAlignContent="right">
+        <Flex hAlignContent="between">
+          <img
+            src={landingModel2}
+            alt="model posing with clothing"
+            draggable={false}
+            height="800"
+          />
           <img
             src={landingModel}
             alt="model posing with clothing"
@@ -31,7 +38,7 @@ const Landing = () => {
           />
         </Flex>
       </Box>
-      <Box margin="space120">
+      <Box marginTop="space120">
         <Flex vertical hAlignContent="center">
           <Stack orientation="vertical" spacing="space50">
             <Text as="p" textAlign={"center"} fontSize="fontSize60">
