@@ -6,7 +6,7 @@ import { Text } from "@twilio-paste/core/text";
 import { Stack } from "@twilio-paste/core/stack";
 import { Button } from "@twilio-paste/core/button";
 
-import landingModel from "../../assets/page-content/landing_page1.webp";
+import landingModel1 from "../../assets/page-content/landing_page1.webp";
 import landingModel2 from "../../assets/page-content/landing_page2.png";
 
 const Landing = () => {
@@ -26,13 +26,13 @@ const Landing = () => {
         <Flex hAlignContent="between">
           <img
             src={landingModel2}
-            alt="model posing with clothing"
+            alt="black t-shirt"
             draggable={false}
             height="800"
           />
           <img
-            src={landingModel}
-            alt="model posing with clothing"
+            src={landingModel1}
+            alt="brown jacket"
             draggable={false}
             height="800"
           />
