@@ -1,7 +1,7 @@
 import { Box } from "@twilio-paste/box";
-import { Stack } from "@twilio-paste/core";
 import { Flex } from "@twilio-paste/core/flex";
 import { Text } from "@twilio-paste/core/text";
+import { Stack } from "@twilio-paste/core/stack";
 import { Grid, Column } from "@twilio-paste/core/grid";
 
 import Product from "../UI/Product";

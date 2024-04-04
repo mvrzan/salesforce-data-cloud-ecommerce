@@ -1,7 +1,7 @@
 import { Box } from "@twilio-paste/box";
-import { Stack } from "@twilio-paste/core";
 import { Flex } from "@twilio-paste/core/flex";
 import { Text } from "@twilio-paste/core/text";
+import { Stack } from "@twilio-paste/core/stack";
 import { Grid, Column } from "@twilio-paste/core/grid";
 
 import Product from "../UI/Product";
@@ -40,7 +40,7 @@ const Jewelry = () => {
           <Stack orientation="vertical" spacing="space50">
             <Text
               as="p"
-              textAlign={"left"}
+              textAlign="left"
               fontSize="fontSize80"
               fontWeight="fontWeightBold"
               verticalAlign="center"
@@ -59,7 +59,7 @@ const Jewelry = () => {
               </Text>
               <Text
                 as="p"
-                textAlign={"left"}
+                textAlign="left"
                 fontSize="fontSize40"
                 color="colorTextInverse"
               >

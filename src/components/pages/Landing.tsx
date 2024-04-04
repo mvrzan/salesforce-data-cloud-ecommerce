@@ -41,12 +41,12 @@ const Landing = () => {
       <Box marginTop="space120">
         <Flex vertical hAlignContent="center">
           <Stack orientation="vertical" spacing="space50">
-            <Text as="p" textAlign={"center"} fontSize="fontSize60">
+            <Text as="p" textAlign="center" fontSize="fontSize60">
               HOT DEALS
             </Text>
             <Text
               as="h2"
-              textAlign={"center"}
+              textAlign="center"
               fontWeight="fontWeightExtrabold"
               fontSize="fontSize100"
             >
