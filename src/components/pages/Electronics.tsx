@@ -6,7 +6,7 @@ import { Grid, Column } from "@twilio-paste/core/grid";
 
 import Product from "../UI/Product";
 import useBearStore from "../hooks/useBearStore";
-import homeBanner from "../../assets/page-content/home_banner.png";
+import electronicsBanner1 from "../../assets/page-content/electronics_banner1.webp";
 
 interface ProductProps {
   category: string;
@@ -37,6 +37,12 @@ const Electronics = () => {
           marginLeft="space80"
           marginRight="space80"
         >
+          <img
+            src={electronicsBanner1}
+            alt="two people posing"
+            draggable={false}
+            height="210"
+          />
           <Stack orientation="vertical" spacing="space50">
             <Text
               as="p"
@@ -45,18 +51,12 @@ const Electronics = () => {
               fontWeight="fontWeightBold"
               verticalAlign="center"
             >
-              Member Exclusive
+              The latest tech has landed!
             </Text>
             <Text as="p" textAlign={"left"} fontSize="fontSize40">
-              15% off everything + extra $10 off for the first order!
+              Do not miss out!
             </Text>
           </Stack>
-          <img
-            src={homeBanner}
-            alt="two people posing"
-            draggable={false}
-            height="210"
-          />
         </Flex>
       </Box>
       <Grid marginTop="space60">

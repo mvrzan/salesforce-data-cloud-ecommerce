@@ -37,14 +37,14 @@ const Home = () => {
           <Stack orientation="vertical" spacing="space50">
             <Text
               as="p"
-              textAlign={"left"}
+              textAlign="left"
               fontSize="fontSize80"
               fontWeight="fontWeightBold"
               verticalAlign="center"
             >
               Member Exclusive
             </Text>
-            <Text as="p" textAlign={"left"} fontSize="fontSize40">
+            <Text as="p" textAlign="left" fontSize="fontSize40">
               15% off everything + extra $10 off for the first order!
             </Text>
           </Stack>

@@ -4,9 +4,11 @@ import { Flex } from "@twilio-paste/core/flex";
 import { Text } from "@twilio-paste/core/text";
 import { Grid, Column } from "@twilio-paste/core/grid";
 
-import Product from "../UI/Product";
 import useBearStore from "../hooks/useBearStore";
-import homeBanner from "../../assets/page-content/home_banner.png";
+
+import Product from "../UI/Product";
+import menBanner1 from "../../assets/page-content/men_banner1.webp";
+import menBanner2 from "../../assets/page-content/men_banner2.webp";
 
 interface ProductProps {
   category: string;
@@ -26,33 +28,41 @@ const Men = () => {
 
   return (
     <>
-      <Box
-        width="100%"
-        height="20vh"
-        backgroundColor="colorBackgroundPrimaryWeak"
-      >
+      <Box width="100%" height="20vh" backgroundColor="colorBackgroundBrand">
         <Flex
           hAlignContent="between"
           vAlignContent="center"
           marginLeft="space80"
           marginRight="space80"
         >
+          <img
+            src={menBanner1}
+            alt="two people posing"
+            draggable={false}
+            height="210"
+          />
           <Stack orientation="vertical" spacing="space50">
             <Text
               as="p"
-              textAlign={"left"}
+              textAlign="left"
               fontSize="fontSize80"
               fontWeight="fontWeightBold"
               verticalAlign="center"
+              color="colorTextInverse"
             >
-              Member Exclusive
+              Everything you are looking for
             </Text>
-            <Text as="p" textAlign={"left"} fontSize="fontSize40">
-              15% off everything + extra $10 off for the first order!
+            <Text
+              as="p"
+              textAlign="center"
+              fontSize="fontSize40"
+              color="colorTextInverse"
+            >
+              At your fingertips!
             </Text>
           </Stack>
           <img
-            src={homeBanner}
+            src={menBanner2}
             alt="two people posing"
             draggable={false}
             height="210"

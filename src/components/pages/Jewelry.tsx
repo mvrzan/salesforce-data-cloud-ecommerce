@@ -6,7 +6,7 @@ import { Grid, Column } from "@twilio-paste/core/grid";
 
 import Product from "../UI/Product";
 import useBearStore from "../hooks/useBearStore";
-import homeBanner from "../../assets/page-content/home_banner.png";
+import jewelryBanner from "../../assets/page-content/jewelry_banner.webp";
 
 interface ProductProps {
   category: string;
@@ -29,7 +29,7 @@ const Jewelry = () => {
       <Box
         width="100%"
         height="20vh"
-        backgroundColor="colorBackgroundPrimaryWeak"
+        backgroundColor="colorBackgroundStrongest"
       >
         <Flex
           hAlignContent="between"
@@ -44,15 +44,31 @@ const Jewelry = () => {
               fontSize="fontSize80"
               fontWeight="fontWeightBold"
               verticalAlign="center"
+              color="colorTextInverse"
             >
-              Member Exclusive
+              Jewelry!
             </Text>
-            <Text as="p" textAlign={"left"} fontSize="fontSize40">
-              15% off everything + extra $10 off for the first order!
-            </Text>
+            <Stack orientation="vertical" spacing="space40">
+              <Text
+                as="p"
+                textAlign={"left"}
+                fontSize="fontSize40"
+                color="colorTextInverse"
+              >
+                A fancy necklace or casual earrings?
+              </Text>
+              <Text
+                as="p"
+                textAlign={"left"}
+                fontSize="fontSize40"
+                color="colorTextInverse"
+              >
+                We have got just the thing!
+              </Text>
+            </Stack>
           </Stack>
           <img
-            src={homeBanner}
+            src={jewelryBanner}
             alt="two people posing"
             draggable={false}
             height="210"
