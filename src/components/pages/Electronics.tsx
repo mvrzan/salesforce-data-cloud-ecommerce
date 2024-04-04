@@ -46,14 +46,14 @@ const Electronics = () => {
           <Stack orientation="vertical" spacing="space50">
             <Text
               as="p"
-              textAlign={"left"}
+              textAlign="left"
               fontSize="fontSize80"
               fontWeight="fontWeightBold"
               verticalAlign="center"
             >
               The latest tech has landed!
             </Text>
-            <Text as="p" textAlign={"left"} fontSize="fontSize40">
+            <Text as="p" textAlign="left" fontSize="fontSize40">
               Do not miss out!
             </Text>
           </Stack>
