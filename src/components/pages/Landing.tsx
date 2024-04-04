@@ -17,7 +17,7 @@ const Landing = () => {
   };
 
   return (
-    <div>
+    <>
       <Box
         width="100%"
         height="50vh"
@@ -60,7 +60,7 @@ const Landing = () => {
           </Box>
         </Flex>
       </Box>
-    </div>
+    </>
   );
 };
 
