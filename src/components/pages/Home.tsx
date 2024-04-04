@@ -66,6 +66,8 @@ const Home = () => {
                   title={product.title}
                   image={product.image}
                   price={product.price}
+                  description={product.description}
+                  rating={product.rating}
                 />
               </Column>
             </Grid>
