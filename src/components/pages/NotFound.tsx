@@ -17,13 +17,7 @@ const NotFound = () => {
       position="absolute"
       backgroundColor="colorBackgroundPrimaryWeakest"
     >
-      <Flex
-        vertical
-        vAlignContent="center"
-        hAlignContent="center"
-        height="100%"
-        maxHeight="100%"
-      >
+      <Flex vertical vAlignContent="center" hAlignContent="center" height="80%">
         <Stack orientation="vertical" spacing="space60">
           <Flex vAlignContent="center" hAlignContent="center">
             <Text
