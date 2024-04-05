@@ -1,9 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
 import { Box } from "@twilio-paste/box";
 import { Text } from "@twilio-paste/text";
 import { Flex } from "@twilio-paste/core/flex";
-import { Stack } from "@twilio-paste/core/stack";
 import { Button } from "@twilio-paste/core/button";
-import { useNavigate } from "react-router-dom";
 
 import Sections from "./Sections";
 import UserButton from "./UserButton";
@@ -30,10 +30,10 @@ const Navigation = () => {
           </Text>
         </Button>
         <Sections />
-        <Stack orientation="horizontal" spacing="space60">
+        <Flex vAlignContent="center">
           <UserButton />
           <CartButton />
-        </Stack>
+        </Flex>
       </Flex>
     </Box>
   );
