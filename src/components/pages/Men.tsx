@@ -69,7 +69,7 @@ const Men = () => {
           />
         </Flex>
       </Box>
-      <Grid marginTop="space60">
+      <Grid marginTop="space60" marginBottom="space60">
         {filteredMensProducts?.map((product: ProductProps) => {
           return (
             <Grid gutter="space40" key={product.id}>
