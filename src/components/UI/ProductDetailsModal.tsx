@@ -6,6 +6,7 @@ import {
   ModalFooter,
   ModalFooterActions,
 } from "@twilio-paste/core/modal";
+import { Box } from "@twilio-paste/core/box";
 import { Text } from "@twilio-paste/core/text";
 import { Flex } from "@twilio-paste/core/flex";
 import { Stack } from "@twilio-paste/core/stack";
@@ -14,7 +15,6 @@ import { useUID } from "@twilio-paste/core/uid-library";
 import { Paragraph } from "@twilio-paste/core/paragraph";
 import { Separator } from "@twilio-paste/core/separator";
 import { Meter, MeterLabel } from "@twilio-paste/core/meter";
-import { Box } from "@twilio-paste/core/box";
 
 interface ProductDetailsModalProps {
   setIsModalOpen: (value: boolean) => void;
