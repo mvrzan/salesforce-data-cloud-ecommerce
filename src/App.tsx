@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import useBearStore from "./components/hooks/useBearStore";
 
+import Navigation from "./components/Header/Navigation";
 import Landing from "./components/pages/Landing";
 import Home from "./components/pages/Home";
 import Men from "./components/pages/Men";
@@ -10,7 +11,6 @@ import Women from "./components/pages/Women";
 import Jewelry from "./components/pages/Jewelry";
 import Electronics from "./components/pages/Electronics";
 import NotFound from "./components/pages/NotFound";
-import Navigation from "./components/Header/Navigation";
 
 import { CustomizationProvider } from "@twilio-paste/core/customization";
 
