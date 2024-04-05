@@ -83,7 +83,9 @@ const LoginModal = ({ setIsModalOpen }: LoginModalProps) => {
         <Stack orientation="vertical" spacing="space40">
           <Separator orientation="horizontal" verticalSpacing="space10" />
           <Box>
-            <Label htmlFor="first_name">First Name</Label>
+            <Label htmlFor="first_name" required>
+              First Name
+            </Label>
             <Input
               id="first_name"
               name="first_name_input_field"
@@ -97,7 +99,9 @@ const LoginModal = ({ setIsModalOpen }: LoginModalProps) => {
             <HelpText>Enter your last name</HelpText>
           </Box>
           <Box>
-            <Label htmlFor="last_name">Last Name</Label>
+            <Label htmlFor="last_name" required>
+              Last Name
+            </Label>
             <Input
               id="last_name"
               name="last_name_input_field"
@@ -111,7 +115,9 @@ const LoginModal = ({ setIsModalOpen }: LoginModalProps) => {
             <HelpText>Enter your first name</HelpText>
           </Box>
           <Box>
-            <Label htmlFor="email">Email address</Label>
+            <Label htmlFor="email" required>
+              Email address
+            </Label>
             <Input
               id="email"
               name="email_input_field"
