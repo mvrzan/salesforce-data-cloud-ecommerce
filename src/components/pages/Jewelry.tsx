@@ -26,11 +26,7 @@ const Jewelry = () => {
 
   return (
     <>
-      <Box
-        width="100%"
-        height="20vh"
-        backgroundColor="colorBackgroundStrongest"
-      >
+      <Box width="100%" backgroundColor="colorBackgroundStrongest">
         <Flex
           hAlignContent="between"
           vAlignContent="center"

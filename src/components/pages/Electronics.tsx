@@ -26,11 +26,7 @@ const Electronics = () => {
 
   return (
     <>
-      <Box
-        width="100%"
-        height="20vh"
-        backgroundColor="colorBackgroundPrimaryWeak"
-      >
+      <Box width="100%" backgroundColor="colorBackgroundPrimaryWeak">
         <Flex
           hAlignContent="between"
           vAlignContent="center"

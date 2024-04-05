@@ -27,11 +27,7 @@ const Women = () => {
 
   return (
     <>
-      <Box
-        width="100%"
-        height="20vh"
-        backgroundColor="colorBackgroundBrandHighlightWeakest"
-      >
+      <Box width="100%" backgroundColor="colorBackgroundBrandHighlightWeakest">
         <Flex
           hAlignContent="between"
           vAlignContent="center"

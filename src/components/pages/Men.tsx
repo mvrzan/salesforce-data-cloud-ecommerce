@@ -28,7 +28,7 @@ const Men = () => {
 
   return (
     <>
-      <Box width="100%" height="20vh" backgroundColor="colorBackgroundBrand">
+      <Box width="100%" backgroundColor="colorBackgroundBrand">
         <Flex
           hAlignContent="between"
           vAlignContent="center"
