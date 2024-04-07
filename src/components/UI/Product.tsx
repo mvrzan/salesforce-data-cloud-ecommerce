@@ -8,9 +8,11 @@ import { Button } from "@twilio-paste/core/button";
 import { Truncate } from "@twilio-paste/core/truncate";
 import { Separator } from "@twilio-paste/core/separator";
 
+import useBearStore from "../hooks/useBearStore";
 import ProductDetailsModal from "./ProductDetailsModal";
 
 interface ProductProps {
+  id: number;
   image: string;
   price: number;
   title: string;
@@ -24,8 +26,23 @@ const Product = ({
   title,
   description,
   rating,
+  id,
 }: ProductProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const addToCart = useBearStore((state) => state.addToCart);
+
+  const handleAddToCart = () => {
+    const product = {
+      id,
+      image,
+      price,
+      title,
+      description,
+      rating,
+    };
+
+    addToCart(product);
+  };
 
   return (
     <>
@@ -37,6 +54,7 @@ const Product = ({
           title={title}
           description={description}
           rating={rating}
+          id={id}
         />
       )}
       <Box
@@ -88,7 +106,11 @@ const Product = ({
             >
               View Details
             </Button>
-            <Button element="BUTTON_STATIC_POSITION" variant="primary">
+            <Button
+              element="BUTTON_STATIC_POSITION"
+              variant="primary"
+              onClick={handleAddToCart}
+            >
               Add to Cart
             </Button>
           </Stack>
