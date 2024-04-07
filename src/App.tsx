@@ -11,6 +11,7 @@ import Women from "./components/pages/Women";
 import Jewelry from "./components/pages/Jewelry";
 import Electronics from "./components/pages/Electronics";
 import NotFound from "./components/pages/NotFound";
+import Cart from "./components/pages/Cart";
 
 import { CustomizationProvider } from "@twilio-paste/core/customization";
 
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="jewelry" element={<Jewelry />} />
         <Route path="electronics" element={<Electronics />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="cart" element={<Cart />} />
       </Routes>
     </CustomizationProvider>
   );
