@@ -16,12 +16,15 @@ import { Paragraph } from "@twilio-paste/core/paragraph";
 import { Separator } from "@twilio-paste/core/separator";
 import { Meter, MeterLabel } from "@twilio-paste/core/meter";
 
+import useBearStore from "../hooks/useBearStore";
+
 interface ProductDetailsModalProps {
   setIsModalOpen: (value: boolean) => void;
   image: string;
   price: number;
   title: string;
   description: string;
+  id: number;
   rating: { rate: number; count: number };
 }
 
@@ -32,9 +35,25 @@ const ProductDetailsModal = ({
   title,
   description,
   rating,
+  id,
 }: ProductDetailsModalProps) => {
   const modalHeadingID = useUID();
   const meterID = useUID();
+  const addToCart = useBearStore((state) => state.addToCart);
+
+  const handleAddToCart = () => {
+    const product = {
+      id,
+      image,
+      price,
+      title,
+      description,
+      rating,
+    };
+
+    addToCart(product);
+    setIsModalOpen(false);
+  };
 
   return (
     <Modal
@@ -78,7 +97,7 @@ const ProductDetailsModal = ({
             <Button variant="destructive" onClick={() => setIsModalOpen(false)}>
               Cancel
             </Button>
-            <Button variant="primary" onClick={() => setIsModalOpen(false)}>
+            <Button variant="primary" onClick={handleAddToCart}>
               Add to cart
             </Button>
           </Stack>
