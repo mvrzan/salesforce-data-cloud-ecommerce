@@ -24,13 +24,14 @@ const Navigation = () => {
             as="h1"
             fontSize="fontSize90"
             fontWeight="fontWeightSemibold"
+            color="colorTextLink"
             onClick={landingClicked}
           >
             Data Cloud Shopping
           </Text>
         </Button>
         <Sections />
-        <Flex vAlignContent="center">
+        <Flex vAlignContent="center" hAlignContent="center">
           <UserButton />
           <CartButton />
         </Flex>
