@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 
-import { TiShoppingCart } from "react-icons/ti";
-import { Button } from "@twilio-paste/core/button";
+import { Box } from "@twilio-paste/box";
 import { Badge } from "@twilio-paste/core/badge";
 import useBearStore from "../hooks/useBearStore";
-import { Stack } from "@twilio-paste/core";
+import { Stack } from "@twilio-paste/core/stack";
+import { Button } from "@twilio-paste/core/button";
+
+import { TiShoppingCart } from "react-icons/ti";
 
 const CartButton = () => {
   const navigate = useNavigate();
@@ -22,9 +24,12 @@ const CartButton = () => {
     >
       <Stack orientation="horizontal" spacing="space40">
         <TiShoppingCart size="40" />
-        <Badge as="span" variant="neutral_counter">
-          {numberOfItemsInCart >= 99 ? "99+" : numberOfItemsInCart}
-        </Badge>
+
+        <Box display="flex" width="30px">
+          <Badge as="span" variant="neutral_counter">
+            {numberOfItemsInCart >= 99 ? "99+" : numberOfItemsInCart}
+          </Badge>
+        </Box>
       </Stack>
     </Button>
   );
