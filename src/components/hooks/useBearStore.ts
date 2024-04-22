@@ -14,7 +14,7 @@ interface Product {
 }
 
 type BearStore = {
-  products: [];
+  products: object[];
   fetch: () => Promise<void>;
   cart: Product[];
   addToCart: (product: Product) => void;
