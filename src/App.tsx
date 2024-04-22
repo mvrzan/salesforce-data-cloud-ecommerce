@@ -2,24 +2,24 @@ import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import useBearStore from "./components/hooks/useBearStore";
+import { CustomizationProvider } from "@twilio-paste/core/customization";
 
-import Navigation from "./components/Header/Navigation";
-import Landing from "./components/pages/Landing";
-import Home from "./components/pages/Home";
 import Men from "./components/pages/Men";
+import Cart from "./components/pages/Cart";
+import Home from "./components/pages/Home";
 import Women from "./components/pages/Women";
 import Jewelry from "./components/pages/Jewelry";
-import Electronics from "./components/pages/Electronics";
+import Landing from "./components/pages/Landing";
 import NotFound from "./components/pages/NotFound";
-import Cart from "./components/pages/Cart";
-
-import { CustomizationProvider } from "@twilio-paste/core/customization";
+import Navigation from "./components/Header/Navigation";
+import Electronics from "./components/pages/Electronics";
 
 const App = () => {
   const { fetch } = useBearStore();
 
   useEffect(() => {
     fetch();
+    console.log("fetching");
   }, [fetch]);
 
   return (
