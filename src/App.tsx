@@ -19,7 +19,6 @@ const App = () => {
 
   useEffect(() => {
     fetch();
-    console.log("fetching");
   }, [fetch]);
 
   return (
