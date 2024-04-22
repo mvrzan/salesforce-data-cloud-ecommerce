@@ -92,11 +92,12 @@ const LoginModal = ({ setIsModalOpen }: LoginModalProps) => {
               placeholder="First Name"
               type="text"
               required
+              autoComplete="given-name"
               onChange={(event) => {
                 setFirstName(event.target.value);
               }}
             />
-            <HelpText>Enter your last name</HelpText>
+            <HelpText>Enter your first name</HelpText>
           </Box>
           <Box>
             <Label htmlFor="last_name" required>
@@ -108,11 +109,12 @@ const LoginModal = ({ setIsModalOpen }: LoginModalProps) => {
               placeholder="Last Name"
               type="text"
               required
+              autoComplete="family-name"
               onChange={(event) => {
                 setLastName(event.target.value);
               }}
             />
-            <HelpText>Enter your first name</HelpText>
+            <HelpText>Enter your last name</HelpText>
           </Box>
           <Box>
             <Label htmlFor="email" required>
@@ -124,6 +126,7 @@ const LoginModal = ({ setIsModalOpen }: LoginModalProps) => {
               placeholder="Email address"
               type="email"
               required
+              autoComplete="off"
               onChange={(event) => {
                 setEmail(event.target.value);
               }}
@@ -131,17 +134,18 @@ const LoginModal = ({ setIsModalOpen }: LoginModalProps) => {
             <HelpText>Enter your email address</HelpText>
           </Box>
           <Box>
-            <Label htmlFor="password">Phone number</Label>
+            <Label htmlFor="phone_number">Phone number</Label>
             <Input
               id="phone_number"
               name="phone_number_input_field"
               placeholder="+123456789 - Optional"
               type="text"
+              autoComplete="off"
               onChange={(event) => {
                 setPhoneNumber(event.target.value);
               }}
             />
-            <HelpText>Enter your password</HelpText>
+            <HelpText>Enter your phone number</HelpText>
           </Box>
         </Stack>
       </ModalBody>
