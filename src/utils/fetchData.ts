@@ -6,7 +6,7 @@
  * @throws {Error} If the request to the API fails.
  */
 
-export const fetchProductData = async () => {
+export const fetchProductData = async (): Promise<Array<object>> => {
   try {
     const res = await fetch("https://fakestoreapi.com/products");
 
