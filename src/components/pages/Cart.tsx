@@ -8,6 +8,7 @@ import { Heading } from "@twilio-paste/core/heading";
 import { useUID } from "@twilio-paste/core/dist/uid-library";
 
 import CartItem from "../UI/CartItem";
+import EmptyCart from "../UI/EmptyCart";
 import { Product } from "../../utils/types";
 import useBearStore from "../hooks/useBearStore";
 
@@ -27,33 +28,36 @@ const Cart = () => {
       <Heading as="h1" variant="heading10">
         Review your shopping cart
       </Heading>
+
+      {cart?.length === 0 && <EmptyCart />}
       {cart?.map((product: Product) => {
         return <CartItem key={itemId + Math.random()} product={product} />;
       })}
-
-      <Flex hAlignContent="between">
-        <Button variant="destructive" onClick={clearCartHandler}>
-          Clear shopping cart
-        </Button>
-        <Stack orientation="horizontal" spacing="space40">
-          <Button
-            variant="secondary"
-            onClick={() => {
-              navigate("/home");
-            }}
-          >
-            Continue Shopping
+      {cart?.length > 0 && (
+        <Flex hAlignContent="between">
+          <Button variant="destructive" onClick={clearCartHandler}>
+            Clear shopping cart
           </Button>
-          <Button
-            variant="primary"
-            onClick={() => {
-              console.log("cart", cart);
-            }}
-          >
-            Checkout
-          </Button>
-        </Stack>
-      </Flex>
+          <Stack orientation="horizontal" spacing="space40">
+            <Button
+              variant="secondary"
+              onClick={() => {
+                navigate("/home");
+              }}
+            >
+              Continue Shopping
+            </Button>
+            <Button
+              variant="primary"
+              onClick={() => {
+                console.log("cart", cart);
+              }}
+            >
+              Checkout
+            </Button>
+          </Stack>
+        </Flex>
+      )}
     </Box>
   );
 };
