@@ -19,7 +19,7 @@ interface ProductProps {
 }
 
 const Jewelry = () => {
-  const products = useBearStore((state) => state.products);
+  const products = useBearStore((state) => state.products) as ProductProps[];
   const filteredJewelryProducts = products?.filter(
     (product: ProductProps) => product.category === "jewelery"
   );

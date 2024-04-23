@@ -19,7 +19,7 @@ interface ProductProps {
 }
 
 const Home = () => {
-  const products = useBearStore((state) => state.products);
+  const products = useBearStore((state) => state.products) as ProductProps[];
 
   return (
     <>

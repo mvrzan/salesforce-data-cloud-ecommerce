@@ -20,7 +20,7 @@ interface ProductProps {
 }
 
 const Women = () => {
-  const products = useBearStore((state) => state.products);
+  const products = useBearStore((state) => state.products) as ProductProps[];
   const filteredWomensProducts = products?.filter(
     (product: ProductProps) => product.category === "women's clothing"
   );
