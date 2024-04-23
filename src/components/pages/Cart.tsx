@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useBearStore from "../hooks/useBearStore";
 
 import { Box } from "@twilio-paste/box";
 import { Flex } from "@twilio-paste/core/flex";
@@ -8,11 +10,12 @@ import { Heading } from "@twilio-paste/core/heading";
 import { useUID } from "@twilio-paste/core/dist/uid-library";
 
 import CartItem from "../UI/CartItem";
+import CheckoutModal from "../UI/CheckoutModal";
 import EmptyCart from "../UI/EmptyCart";
 import { Product } from "../../utils/types";
-import useBearStore from "../hooks/useBearStore";
 
 const Cart = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const itemId = useUID();
   const navigate = useNavigate();
   const { clearCart } = useBearStore();
@@ -21,6 +24,10 @@ const Cart = () => {
   const clearCartHandler = () => {
     clearCart();
     navigate("/home");
+  };
+
+  const checkoutModalHandler = () => {
+    setIsModalOpen(true);
   };
 
   return (
@@ -47,17 +54,13 @@ const Cart = () => {
             >
               Continue Shopping
             </Button>
-            <Button
-              variant="primary"
-              onClick={() => {
-                console.log("cart", cart);
-              }}
-            >
+            <Button variant="primary" onClick={checkoutModalHandler}>
               Checkout
             </Button>
           </Stack>
         </Flex>
       )}
+      {isModalOpen && <CheckoutModal setIsModalOpen={setIsModalOpen} />}
     </Box>
   );
 };
