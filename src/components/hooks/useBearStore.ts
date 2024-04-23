@@ -11,15 +11,17 @@ interface Product {
     rate: number;
     count: number;
   };
+  quantity?: number;
 }
 
 type BearStore = {
-  products: object[];
-  fetch: () => Promise<void>;
   cart: Product[];
-  addToCart: (product: Product) => void;
+  products: object[];
   numberOfItemsInCart: number;
+  fetch: () => Promise<void>;
+  addToCart: (product: Product) => void;
   clearCart: () => void;
+  removeItemFromCart: (product: Product) => void;
 };
 
 const useBearStore = create<BearStore>((set) => ({
@@ -34,13 +36,55 @@ const useBearStore = create<BearStore>((set) => ({
       console.error("Error setting global state:", error);
     }
   },
+
   addToCart: (product: Product) => {
-    set((state) => ({ cart: [...state.cart, product] }));
     set((state) => ({ numberOfItemsInCart: state.numberOfItemsInCart + 1 }));
+
+    set((state) => {
+      // if the cart is empty, add the product with a quantity of 1
+      if (state.cart.length === 0) {
+        return { cart: [{ ...product, quantity: 1 }] };
+      }
+
+      // if the cart is not empty and the product is not in the cart, add the product with a quantity of 1
+      if (!state.cart.some((item) => item.id === product.id)) {
+        return { cart: [...state.cart, { ...product, quantity: 1 }] };
+      }
+
+      // if the cart is not empty, check if the product is already in the cart
+      const updatedState = state.cart.map((cartItem) => {
+        if (cartItem.id === product.id) {
+          const itemQuantity =
+            cartItem.quantity === undefined ? 0 : cartItem.quantity;
+
+          return {
+            ...cartItem,
+            quantity: itemQuantity + 1,
+          };
+        }
+
+        return {
+          ...cartItem,
+        };
+      });
+
+      return { cart: [...updatedState] };
+    });
   },
+
   clearCart: () => {
     set(() => ({ numberOfItemsInCart: 0 }));
     set(() => ({ cart: [] }));
+  },
+
+  removeItemFromCart: (product: Product) => {
+    set((state) => ({
+      cart: state.cart.filter((item) => item.id !== product.id),
+    }));
+
+    set((state) => ({
+      numberOfItemsInCart: state.numberOfItemsInCart - product.quantity!,
+    }));
   },
 }));
 
