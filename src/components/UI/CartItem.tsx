@@ -27,12 +27,20 @@ const CartItem = ({ product }: CartItemProps) => {
     >
       <Grid>
         <Column>
-          <img
-            src={product.image}
-            alt="two people posing"
-            draggable={false}
-            height="100"
-          />
+          <Box
+            alignItems="center"
+            justifyContent="start"
+            marginLeft="space80"
+            display="flex"
+            height="100%"
+          >
+            <img
+              src={product.image}
+              alt="two people posing"
+              draggable={false}
+              height="100"
+            />
+          </Box>
         </Column>
         <Column>
           <Box
@@ -95,6 +103,7 @@ const CartItem = ({ product }: CartItemProps) => {
             justifyContent="end"
             display="flex"
             height="100%"
+            marginRight="space80"
           >
             <Button variant="destructive" onClick={removeItemHandler}>
               Remove
