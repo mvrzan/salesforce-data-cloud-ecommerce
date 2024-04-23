@@ -4,12 +4,19 @@ import { Button } from "@twilio-paste/core/button";
 import { Column, Grid } from "@twilio-paste/core/grid";
 
 import { Product } from "../../utils/types";
+import useBearStore from "../hooks/useBearStore";
 
 interface CartItemProps {
   product: Product;
 }
 
 const CartItem = ({ product }: CartItemProps) => {
+  const { removeItemFromCart } = useBearStore();
+
+  const removeItemHandler = () => {
+    removeItemFromCart(product);
+  };
+
   return (
     <Box
       marginTop="space40"
@@ -30,7 +37,7 @@ const CartItem = ({ product }: CartItemProps) => {
         <Column>
           <Box
             alignItems="center"
-            justifyContent="end"
+            justifyContent="start"
             display="flex"
             height="100%"
           >
@@ -77,7 +84,7 @@ const CartItem = ({ product }: CartItemProps) => {
               textAlign="center"
               margin="space40"
             >
-              Quantity:
+              Quantity: {product.quantity}
             </Text>
           </Box>
         </Column>
@@ -88,7 +95,9 @@ const CartItem = ({ product }: CartItemProps) => {
             display="flex"
             height="100%"
           >
-            <Button variant="destructive">Remove</Button>
+            <Button variant="destructive" onClick={removeItemHandler}>
+              Remove
+            </Button>
           </Box>
         </Column>
       </Grid>
