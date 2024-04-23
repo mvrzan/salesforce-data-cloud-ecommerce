@@ -80,7 +80,8 @@ const CartItem = ({ product }: CartItemProps) => {
           >
             <Text
               as="p"
-              fontSize="fontSize30"
+              fontSize="fontSize40"
+              fontWeight="fontWeightBold"
               textAlign="center"
               margin="space40"
             >
