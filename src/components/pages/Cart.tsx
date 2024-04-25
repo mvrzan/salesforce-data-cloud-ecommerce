@@ -70,14 +70,14 @@ const Cart = () => {
     });
 
     // Send to Salesforce Data Cloud
-    // User removed all the items form the cart
+    // User purchased the items in the cart
     window.SalesforceInteractions.sendEvent({
       interaction: {
         name: window.SalesforceInteractions.OrderInteractionName.Purchase,
         order: {
           id: Math.random().toString(),
-          orderTotalValue: totalCartValue,
-          orderCurrency: "USD",
+          totalValue: totalCartValue,
+          currency: "USD",
           lineItems,
         },
       },
