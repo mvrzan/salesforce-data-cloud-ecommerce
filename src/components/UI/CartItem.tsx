@@ -6,6 +6,12 @@ import { Column, Grid } from "@twilio-paste/core/grid";
 import { Product } from "../../utils/types";
 import useBearStore from "../hooks/useBearStore";
 
+declare const window: Window &
+  typeof globalThis & {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    SalesforceInteractions: any;
+  };
+
 interface CartItemProps {
   product: Product;
 }
@@ -15,6 +21,29 @@ const CartItem = ({ product }: CartItemProps) => {
 
   const removeItemHandler = () => {
     removeItemFromCart(product);
+
+    window.SalesforceInteractions.setLoggingLevel(5);
+
+    // Send to Salesforce Data Cloud
+    // User added an item to cart
+    window.SalesforceInteractions.sendEvent({
+      interaction: {
+        name: window.SalesforceInteractions.CartInteractionName.RemoveFromCart,
+        lineItem: {
+          catalogObjectType: "Product",
+          catalogObjectId: product.id.toString(),
+          quantity: 1,
+          price: product.price,
+          currency: "USD",
+          attributes: {
+            title: product.title,
+            description: product.description,
+            rating: product.rating.rate,
+            image: product.image,
+          },
+        },
+      },
+    });
   };
 
   return (
