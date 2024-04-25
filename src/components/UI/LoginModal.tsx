@@ -21,6 +21,12 @@ import { Separator } from "@twilio-paste/core/separator";
 
 import { writeToLocalStorage } from "../../utils/localStorageUtil";
 
+declare const window: Window &
+  typeof globalThis & {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    SalesforceInteractions: any;
+  };
+
 interface LoginModalProps {
   setIsModalOpen: (value: boolean) => void;
 }
@@ -51,6 +57,19 @@ const LoginModal = ({ setIsModalOpen }: LoginModalProps) => {
     });
 
     setIsModalOpen(false);
+
+    window.SalesforceInteractions.setLoggingLevel(5);
+
+    // Send to Salesforce Data Cloud
+    // User signed up and logged in
+    window.SalesforceInteractions.sendEvent({
+      user: {
+        attributes: {
+          eventType: "contactPointEmail",
+          email,
+        },
+      },
+    });
   };
 
   return (
