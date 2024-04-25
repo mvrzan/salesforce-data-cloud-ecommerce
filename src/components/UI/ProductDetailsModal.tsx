@@ -18,6 +18,12 @@ import { Meter, MeterLabel } from "@twilio-paste/core/meter";
 
 import useBearStore from "../hooks/useBearStore";
 
+declare const window: Window &
+  typeof globalThis & {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    SalesforceInteractions: any;
+  };
+
 interface ProductDetailsModalProps {
   setIsModalOpen: (value: boolean) => void;
   image: string;
@@ -53,6 +59,29 @@ const ProductDetailsModal = ({
 
     addToCart(product);
     setIsModalOpen(false);
+
+    window.SalesforceInteractions.setLoggingLevel(5);
+
+    // Send to Salesforce Data Cloud
+    // User added an item to cart
+    window.SalesforceInteractions.sendEvent({
+      interaction: {
+        name: window.SalesforceInteractions.CartInteractionName.AddToCart,
+        lineItem: {
+          catalogObjectType: "Product",
+          catalogObjectId: id.toString(),
+          quantity: 1,
+          price: price,
+          currency: "USD",
+          attributes: {
+            title,
+            description,
+            rating: rating.rate,
+            image,
+          },
+        },
+      },
+    });
   };
 
   return (
