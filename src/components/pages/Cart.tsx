@@ -14,6 +14,12 @@ import CheckoutModal from "../UI/CheckoutModal";
 import EmptyCart from "../UI/EmptyCart";
 import { Product } from "../../utils/types";
 
+declare const window: Window &
+  typeof globalThis & {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    SalesforceInteractions: any;
+  };
+
 const Cart = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const itemId = useUID();
@@ -24,6 +30,17 @@ const Cart = () => {
   const clearCartHandler = () => {
     clearCart();
     navigate("/home");
+
+    window.SalesforceInteractions.setLoggingLevel(5);
+
+    // Send to Salesforce Data Cloud
+    // User removed all the items form the cart
+    window.SalesforceInteractions.sendEvent({
+      interaction: {
+        name: "Cart Clear",
+        eventType: "cartCleared",
+      },
+    });
   };
 
   const checkoutModalHandler = () => {
