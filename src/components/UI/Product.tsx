@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import { Box } from "@twilio-paste/box";
 import { Flex } from "@twilio-paste/core/flex";
@@ -10,6 +11,12 @@ import { Separator } from "@twilio-paste/core/separator";
 
 import useBearStore from "../hooks/useBearStore";
 import ProductDetailsModal from "./ProductDetailsModal";
+
+declare const window: Window &
+  typeof globalThis & {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    SalesforceInteractions: any;
+  };
 
 interface ProductProps {
   id: number;
@@ -30,6 +37,45 @@ const Product = ({
 }: ProductProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const addToCart = useBearStore((state) => state.addToCart);
+  const location = useLocation();
+
+  const currentPath = location.pathname.substring(1);
+
+  const handleViewDetails = () => {
+    setIsModalOpen(!isModalOpen);
+
+    window.SalesforceInteractions.setLoggingLevel(5);
+
+    // Send to Salesforce Data Cloud
+    // User viewed a product
+    window.SalesforceInteractions.sendEvent({
+      interaction: {
+        name: window.SalesforceInteractions.CatalogObjectInteractionName
+          .ViewCatalogObject,
+        catalogObject: {
+          type: "Product",
+          id: id.toString(),
+          attributes: {
+            name: title,
+            category: currentPath,
+            price,
+            rating: rating.rate,
+          },
+        },
+      },
+      user: {
+        identities: {
+          loyaltyId: "885627312393",
+        },
+        attributes: {
+          eventType: "identity",
+          firstName: "John",
+          lastName: "Doe",
+          email: "test@test.com",
+        },
+      },
+    });
+  };
 
   const handleAddToCart = () => {
     const product = {
@@ -42,6 +88,29 @@ const Product = ({
     };
 
     addToCart(product);
+
+    window.SalesforceInteractions.setLoggingLevel(5);
+
+    // Send to Salesforce Data Cloud
+    // User added an item to cart
+    window.SalesforceInteractions.sendEvent({
+      interaction: {
+        name: window.SalesforceInteractions.CartInteractionName.AddToCart,
+        lineItem: {
+          catalogObjectType: "Product",
+          catalogObjectId: id.toString(),
+          quantity: 1,
+          price: price,
+          currency: "USD",
+          attributes: {
+            title,
+            description,
+            rating: rating.rate,
+            image,
+          },
+        },
+      },
+    });
   };
 
   return (
@@ -100,9 +169,7 @@ const Product = ({
             <Button
               element="BUTTON_STATIC_POSITION"
               variant="secondary"
-              onClick={() => {
-                setIsModalOpen(!isModalOpen);
-              }}
+              onClick={handleViewDetails}
             >
               View Details
             </Button>
