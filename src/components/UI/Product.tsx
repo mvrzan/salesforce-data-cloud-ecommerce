@@ -63,17 +63,6 @@ const Product = ({
           },
         },
       },
-      user: {
-        identities: {
-          loyaltyId: "885627312393",
-        },
-        attributes: {
-          eventType: "identity",
-          firstName: "John",
-          lastName: "Doe",
-          email: "test@test.com",
-        },
-      },
     });
   };
 
