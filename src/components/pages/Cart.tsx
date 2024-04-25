@@ -27,6 +27,11 @@ const Cart = () => {
   const { clearCart } = useBearStore();
   const cart = useBearStore((state) => state.cart);
 
+  const totalCartValue = cart.reduce(
+    (acc: number, product: Product) => acc + product.price * product.quantity!,
+    0
+  );
+
   const clearCartHandler = () => {
     clearCart();
     navigate("/home");
@@ -45,6 +50,38 @@ const Cart = () => {
 
   const checkoutModalHandler = () => {
     setIsModalOpen(true);
+
+    window.SalesforceInteractions.setLoggingLevel(5);
+
+    const lineItems = cart.map((product: Product) => {
+      return {
+        catalogObjectType: "Product",
+        catalogObjectId: product.id.toString(),
+        quantity: product.quantity,
+        price: product.price,
+        currency: "USD",
+        attributes: {
+          title: product.title,
+          description: product.description,
+          rating: product.rating.rate,
+          image: product.image,
+        },
+      };
+    });
+
+    // Send to Salesforce Data Cloud
+    // User removed all the items form the cart
+    window.SalesforceInteractions.sendEvent({
+      interaction: {
+        name: window.SalesforceInteractions.OrderInteractionName.Purchase,
+        order: {
+          id: Math.random().toString(),
+          orderTotalValue: totalCartValue,
+          orderCurrency: "USD",
+          lineItems,
+        },
+      },
+    });
   };
 
   return (
