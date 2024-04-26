@@ -42,7 +42,7 @@ const Cart = () => {
     // User removed all the items form the cart
     window.SalesforceInteractions.sendEvent({
       interaction: {
-        name: "Cart Clear",
+        name: "Cart Cleared",
         eventType: "cartCleared",
       },
     });
