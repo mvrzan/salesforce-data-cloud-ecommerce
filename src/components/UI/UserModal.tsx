@@ -25,6 +25,12 @@ import {
   deleteFromLocalStorage,
 } from "../../utils/localStorageUtil";
 
+declare const window: Window &
+  typeof globalThis & {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    SalesforceInteractions: any;
+  };
+
 interface LoginModalProps {
   setIsModalOpen: (value: boolean) => void;
 }
@@ -68,6 +74,20 @@ const UserModal = ({ setIsModalOpen }: LoginModalProps) => {
     writeToLocalStorage("isAuthenticated", "false");
     deleteFromLocalStorage("user");
     setIsModalOpen(false);
+
+    window.SalesforceInteractions.sendEvent({
+      user: {
+        attributes: {
+          name: "User Logged Out",
+          eventType: "userLoggedOut",
+          firstName,
+          lastName,
+          email,
+          phoneNumber,
+          isAnonymous: "1",
+        },
+      },
+    });
   };
 
   return (
