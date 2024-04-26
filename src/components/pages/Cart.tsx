@@ -10,9 +10,11 @@ import { Heading } from "@twilio-paste/core/heading";
 import { useUID } from "@twilio-paste/core/dist/uid-library";
 
 import CartItem from "../UI/CartItem";
-import CheckoutModal from "../UI/CheckoutModal";
 import EmptyCart from "../UI/EmptyCart";
+import CheckoutModal from "../UI/CheckoutModal";
+
 import { Product } from "../../utils/types";
+import { readFromLocalStorage } from "../../utils/localStorageUtil";
 
 declare const window: Window &
   typeof globalThis & {
@@ -36,10 +38,37 @@ const Cart = () => {
     clearCart();
     navigate("/home");
 
-    window.SalesforceInteractions.setLoggingLevel(5);
+    const userLoggedIn = JSON.parse(
+      readFromLocalStorage("isAuthenticated") as string
+    );
 
-    // Send to Salesforce Data Cloud
-    // User removed all the items form the cart
+    if (userLoggedIn) {
+      const user = JSON.parse(readFromLocalStorage("user") as string);
+
+      const attributes = {
+        eventType: "identity",
+        firstName: user.firstName,
+        lastName: user.lastName,
+        isAnonymous: "1",
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+      };
+
+      // Send to Salesforce Data Cloud that a known user cleared the cart
+      window.SalesforceInteractions.sendEvent({
+        interaction: {
+          name: "Cart Cleared",
+          eventType: "cartCleared",
+        },
+        user: {
+          attributes,
+        },
+      });
+
+      return;
+    }
+
+    // Send to Salesforce Data Cloud that an unknown user cleared the cart
     window.SalesforceInteractions.sendEvent({
       interaction: {
         name: "Cart Cleared",
@@ -50,8 +79,6 @@ const Cart = () => {
 
   const checkoutModalHandler = () => {
     setIsModalOpen(true);
-
-    window.SalesforceInteractions.setLoggingLevel(5);
 
     const lineItems = cart.map((product: Product) => {
       return {
