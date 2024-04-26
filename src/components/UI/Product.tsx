@@ -11,6 +11,7 @@ import { Separator } from "@twilio-paste/core/separator";
 
 import useBearStore from "../hooks/useBearStore";
 import ProductDetailsModal from "./ProductDetailsModal";
+import { readFromLocalStorage } from "../../utils/localStorageUtil";
 
 declare const window: Window &
   typeof globalThis & {
@@ -43,11 +44,47 @@ const Product = ({
 
   const handleViewDetails = () => {
     setIsModalOpen(!isModalOpen);
+    const userLoggedIn = JSON.parse(
+      readFromLocalStorage("isAuthenticated") as string
+    );
 
-    window.SalesforceInteractions.setLoggingLevel(5);
+    if (userLoggedIn) {
+      const user = JSON.parse(readFromLocalStorage("user") as string);
 
-    // Send to Salesforce Data Cloud
-    // User viewed a product
+      const attributes = {
+        eventType: "contactPointEmail",
+        firstName: user.firstName,
+        lastName: user.lastName,
+        isAnonymous: "1",
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+      };
+
+      // Send to Salesforce Data Cloud that a known user viewed a product
+      window.SalesforceInteractions.sendEvent({
+        interaction: {
+          name: window.SalesforceInteractions.CatalogObjectInteractionName
+            .ViewCatalogObject,
+          catalogObject: {
+            type: "Product",
+            id: id.toString(),
+            attributes: {
+              name: title,
+              category: currentPath,
+              price,
+              rating: rating.rate,
+            },
+          },
+        },
+        user: {
+          attributes,
+        },
+      });
+
+      return;
+    }
+
+    // Send to Salesforce Data Cloud that an unknown user viewed a product
     window.SalesforceInteractions.sendEvent({
       interaction: {
         name: window.SalesforceInteractions.CatalogObjectInteractionName
@@ -78,10 +115,49 @@ const Product = ({
 
     addToCart(product);
 
-    window.SalesforceInteractions.setLoggingLevel(5);
+    const userLoggedIn = JSON.parse(
+      readFromLocalStorage("isAuthenticated") as string
+    );
 
-    // Send to Salesforce Data Cloud
-    // User added an item to cart
+    if (userLoggedIn) {
+      const user = JSON.parse(readFromLocalStorage("user") as string);
+
+      const attributes = {
+        eventType: "identity",
+        firstName: user.firstName,
+        lastName: user.lastName,
+        isAnonymous: "1",
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+      };
+
+      // Send to Salesforce Data Cloud that a known user added a product to the cart
+      window.SalesforceInteractions.sendEvent({
+        interaction: {
+          name: window.SalesforceInteractions.CartInteractionName.AddToCart,
+          lineItem: {
+            catalogObjectType: "Product",
+            catalogObjectId: id.toString(),
+            quantity: 1,
+            price: price,
+            currency: "USD",
+            attributes: {
+              title,
+              description,
+              rating: rating.rate,
+              image,
+            },
+          },
+        },
+        user: {
+          attributes,
+        },
+      });
+
+      return;
+    }
+
+    // Send to Salesforce Data Cloud that an unknown user added a product to the cart
     window.SalesforceInteractions.sendEvent({
       interaction: {
         name: window.SalesforceInteractions.CartInteractionName.AddToCart,
