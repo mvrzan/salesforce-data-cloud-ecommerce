@@ -32,7 +32,7 @@ const CartItem = ({ product }: CartItemProps) => {
         lineItem: {
           catalogObjectType: "Product",
           catalogObjectId: product.id.toString(),
-          quantity: 1,
+          quantity: product.quantity,
           price: product.price,
           currency: "USD",
           attributes: {
