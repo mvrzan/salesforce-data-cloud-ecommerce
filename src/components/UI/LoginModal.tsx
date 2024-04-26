@@ -58,15 +58,16 @@ const LoginModal = ({ setIsModalOpen }: LoginModalProps) => {
 
     setIsModalOpen(false);
 
-    window.SalesforceInteractions.setLoggingLevel(5);
-
-    // Send to Salesforce Data Cloud
-    // User signed up and logged in
     window.SalesforceInteractions.sendEvent({
       user: {
         attributes: {
-          eventType: "contactPointEmail",
+          name: "User Logged In",
+          eventType: "userLoggedIn",
+          firstName,
+          lastName,
           email,
+          phoneNumber,
+          isAnonymous: "1",
         },
       },
     });
