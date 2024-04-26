@@ -615,6 +615,30 @@
           "developerName": "sessionId",
           "dataType": "Text",
           "isDataRequired": true
+        },
+        {
+          "masterLabel": "attributeName",
+          "developerName": "attributeName",
+          "dataType": "Text",
+          "isDataRequired": false
+        },
+        {
+          "masterLabel": "attributeCategory",
+          "developerName": "attributeCategory",
+          "dataType": "Text",
+          "isDataRequired": false
+        },
+        {
+          "masterLabel": "attributePrice",
+          "developerName": "attributePrice",
+          "dataType": "Number",
+          "isDataRequired": false
+        },
+        {
+          "masterLabel": "attributeRating",
+          "developerName": "attributeRating",
+          "dataType": "Number",
+          "isDataRequired": false
         }
       ]
     },
