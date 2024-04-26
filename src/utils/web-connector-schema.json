@@ -1241,6 +1241,154 @@
           "isDataRequired": true
         }
       ]
+    },
+    {
+      "masterLabel": "User Logged In",
+      "developerName": "userLoggedIn",
+      "category": "Profile",
+      "externalDataTranFields": [
+        {
+          "masterLabel": "eventId",
+          "dataType": "Text",
+          "developerName": "eventId",
+          "isDataRequired": true,
+          "primaryIndexOrder": 1
+        },
+        {
+          "masterLabel": "category",
+          "dataType": "Text",
+          "developerName": "category",
+          "isDataRequired": true
+        },
+        {
+          "masterLabel": "dateTime",
+          "dataType": "DateTime",
+          "developerName": "dateTime",
+          "isDataRequired": true
+        },
+        {
+          "masterLabel": "deviceId",
+          "dataType": "Text",
+          "developerName": "deviceId",
+          "isDataRequired": true
+        },
+        {
+          "masterLabel": "eventType",
+          "dataType": "Text",
+          "developerName": "eventType",
+          "isDataRequired": true
+        },
+        {
+          "masterLabel": "sessionId",
+          "dataType": "Text",
+          "developerName": "sessionId",
+          "isDataRequired": true
+        },
+        {
+          "masterLabel": "email",
+          "developerName": "email",
+          "dataType": "Text",
+          "isDataRequired": false
+        },
+        {
+          "masterLabel": "firstName",
+          "developerName": "firstName",
+          "dataType": "Text",
+          "isDataRequired": false
+        },
+        {
+          "masterLabel": "isAnonymous",
+          "developerName": "isAnonymous",
+          "dataType": "Text",
+          "isDataRequired": true
+        },
+        {
+          "masterLabel": "lastName",
+          "developerName": "lastName",
+          "dataType": "Text",
+          "isDataRequired": false
+        },
+        {
+          "masterLabel": "phoneNumber",
+          "developerName": "phoneNumber",
+          "dataType": "Text",
+          "isDataRequired": false
+        }
+      ]
+    },
+    {
+      "masterLabel": "User Logged Out",
+      "developerName": "userLoggedOut",
+      "category": "Profile",
+      "externalDataTranFields": [
+        {
+          "masterLabel": "eventId",
+          "dataType": "Text",
+          "developerName": "eventId",
+          "isDataRequired": true,
+          "primaryIndexOrder": 1
+        },
+        {
+          "masterLabel": "category",
+          "dataType": "Text",
+          "developerName": "category",
+          "isDataRequired": true
+        },
+        {
+          "masterLabel": "dateTime",
+          "dataType": "DateTime",
+          "developerName": "dateTime",
+          "isDataRequired": true
+        },
+        {
+          "masterLabel": "deviceId",
+          "dataType": "Text",
+          "developerName": "deviceId",
+          "isDataRequired": true
+        },
+        {
+          "masterLabel": "eventType",
+          "dataType": "Text",
+          "developerName": "eventType",
+          "isDataRequired": true
+        },
+        {
+          "masterLabel": "sessionId",
+          "dataType": "Text",
+          "developerName": "sessionId",
+          "isDataRequired": true
+        },
+        {
+          "masterLabel": "email",
+          "developerName": "email",
+          "dataType": "Text",
+          "isDataRequired": false
+        },
+        {
+          "masterLabel": "firstName",
+          "developerName": "firstName",
+          "dataType": "Text",
+          "isDataRequired": false
+        },
+        {
+          "masterLabel": "isAnonymous",
+          "developerName": "isAnonymous",
+          "dataType": "Text",
+          "isDataRequired": true
+        },
+        {
+          "masterLabel": "lastName",
+          "developerName": "lastName",
+          "dataType": "Text",
+          "isDataRequired": false
+        },
+        {
+          "masterLabel": "phoneNumber",
+          "developerName": "phoneNumber",
+          "dataType": "Text",
+          "isDataRequired": false
+        }
+      ]
     }
   ]
 }
