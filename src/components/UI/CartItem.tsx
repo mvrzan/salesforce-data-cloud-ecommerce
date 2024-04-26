@@ -5,6 +5,7 @@ import { Column, Grid } from "@twilio-paste/core/grid";
 
 import { Product } from "../../utils/types";
 import useBearStore from "../hooks/useBearStore";
+import { readFromLocalStorage } from "../../utils/localStorageUtil";
 
 declare const window: Window &
   typeof globalThis & {
@@ -22,10 +23,50 @@ const CartItem = ({ product }: CartItemProps) => {
   const removeItemHandler = () => {
     removeItemFromCart(product);
 
-    window.SalesforceInteractions.setLoggingLevel(5);
+    const userLoggedIn = JSON.parse(
+      readFromLocalStorage("isAuthenticated") as string
+    );
 
-    // Send to Salesforce Data Cloud
-    // User added an item to cart
+    if (userLoggedIn) {
+      const user = JSON.parse(readFromLocalStorage("user") as string);
+
+      const attributes = {
+        eventType: "identity",
+        firstName: user.firstName,
+        lastName: user.lastName,
+        isAnonymous: "1",
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+      };
+
+      // Send to Salesforce Data Cloud that a known user removed an item from the cart
+      window.SalesforceInteractions.sendEvent({
+        interaction: {
+          name: window.SalesforceInteractions.CartInteractionName
+            .RemoveFromCart,
+          lineItem: {
+            catalogObjectType: "Product",
+            catalogObjectId: product.id.toString(),
+            quantity: product.quantity,
+            price: product.price,
+            currency: "USD",
+            attributes: {
+              title: product.title,
+              description: product.description,
+              rating: product.rating.rate,
+              image: product.image,
+            },
+          },
+        },
+        user: {
+          attributes,
+        },
+      });
+
+      return;
+    }
+
+    // Send to Salesforce Data Cloud that an unknown user removed an item from the cart
     window.SalesforceInteractions.sendEvent({
       interaction: {
         name: window.SalesforceInteractions.CartInteractionName.RemoveFromCart,
