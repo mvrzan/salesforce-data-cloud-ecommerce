@@ -14,24 +14,67 @@ interface Product {
   quantity?: number;
 }
 
+interface FetchedProduct {
+  id: number;
+  category: string;
+  title: string;
+  description: string;
+  price: number;
+  image: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
+  quantity?: number;
+}
+
 type BearStore = {
   cart: Product[];
-  products: object[];
+  products: FetchedProduct[];
   numberOfItemsInCart: number;
   fetch: () => Promise<void>;
   addToCart: (product: Product) => void;
   clearCart: () => void;
   removeItemFromCart: (product: Product) => void;
+  electronicsProducts: object[];
+  jewelryProducts: object[];
+  menProducts: object[];
+  womenProducts: object[];
 };
 
 const useBearStore = create<BearStore>((set) => ({
   cart: [],
   products: [],
   numberOfItemsInCart: 0,
+  electronicsProducts: [],
+  jewelryProducts: [],
+  menProducts: [],
+  womenProducts: [],
   fetch: async () => {
     try {
-      const data = await fetchProductData();
+      const data = (await fetchProductData()) as FetchedProduct[];
+
       set({ products: data });
+      set({
+        electronicsProducts: data.filter(
+          (product) => product.category === "electronics"
+        ),
+      });
+      set({
+        jewelryProducts: data.filter(
+          (product) => product.category === "jewelery"
+        ),
+      });
+      set({
+        jewelryProducts: data.filter(
+          (product) => product.category === "men's clothing"
+        ),
+      });
+      set({
+        jewelryProducts: data.filter(
+          (product) => product.category === "women's clothing"
+        ),
+      });
     } catch (error) {
       console.error("Error setting global state:", error);
     }
