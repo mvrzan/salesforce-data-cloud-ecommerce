@@ -12,6 +12,15 @@ This project is a simple React web application built with Vite that uses the Sal
 - [Table of Contents](#table-of-contents)
   - [What does it do?](#what-does-it-do)
   - [How does it work?](#how-does-it-work)
+  - [E-Commerce Application Demo](#e-commerce-application-demo)
+  - [Landing page](#landing-page)
+  - [Home](#home)
+  - [Men](#men)
+  - [Women](#women)
+  - [Jewelry](#jewelry)
+  - [Electronics](#electronics)
+  - [Cart](#cart)
+  - [Not found](#not-found)
   - [Technologies used](#technologies-used)
 - [Configuration](#configuration)
   - [Requirements](#requirements)
@@ -49,6 +58,42 @@ To track various events aforementioned previously, a custom react hook was creat
 Throughout the application, the various event tracking functions are used that send the tracking data to your [Data Cloud tenant specific endpoint](https://help.salesforce.com/s/articleView?id=sf.c360_a_tenant_specific_endpoint.htm&type=5).
 
 **NOTE**: This application does not use [Salesforce sitemap](https://developer.salesforce.com/docs/atlas.en-us.c360a_api.meta/c360a_api/c360a_api_sitemap.htm). Instead, all events are manually tracked in the react application itself.
+
+## E-Commerce Application Demo
+
+![](./screenshots/web-app-demo.gif)
+
+## Landing page
+
+<img width="100%" src="./screenshots/landing.png"/>
+
+## Home
+
+<img width="100%" src="./screenshots/home.png"/>
+
+## Men
+
+<img width="100%" src="./screenshots/home.png"/>
+
+## Women
+
+<img width="100%" src="./screenshots/women.png"/>
+
+## Jewelry
+
+<img width="100%" src="./screenshots/jewelry.png"/>
+
+## Electronics
+
+<img width="100%" src="./screenshots/electronics.png"/>
+
+## Cart
+
+<img width="100%" src="./screenshots/cart.png"/>
+
+## Not found
+
+<img width="100%" src="./screenshots/not-found.png"/>
 
 ## Technologies used
 
