@@ -16,8 +16,10 @@ const UserButton = () => {
 
   useEffect(() => {
     const isAuthenticated = readFromLocalStorage("isAuthenticated");
+
     if (isAuthenticated === "true") {
       const user = JSON.parse(readFromLocalStorage("user") as string);
+
       setUserName(user?.firstName);
       setIsAuthenticated(true);
     }
