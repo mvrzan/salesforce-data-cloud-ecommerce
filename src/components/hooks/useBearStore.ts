@@ -66,12 +66,12 @@ const useBearStore = create<BearStore>((set) => ({
         ),
       });
       set({
-        jewelryProducts: data.filter(
+        menProducts: data.filter(
           (product) => product.category === "men's clothing"
         ),
       });
       set({
-        jewelryProducts: data.filter(
+        womenProducts: data.filter(
           (product) => product.category === "women's clothing"
         ),
       });
