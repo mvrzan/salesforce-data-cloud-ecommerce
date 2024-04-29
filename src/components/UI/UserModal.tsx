@@ -24,12 +24,7 @@ import {
   readFromLocalStorage,
   deleteFromLocalStorage,
 } from "../../utils/localStorageUtil";
-
-declare const window: Window &
-  typeof globalThis & {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    SalesforceInteractions: any;
-  };
+import useSalesforceInteractions from "../hooks/useSalesforceInteractions";
 
 interface LoginModalProps {
   setIsModalOpen: (value: boolean) => void;
@@ -42,6 +37,7 @@ const UserModal = ({ setIsModalOpen }: LoginModalProps) => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const userTitleName = useRef(firstName);
+  const { userLoggedOutHook } = useSalesforceInteractions();
 
   useEffect(() => {
     const isAuthenticated = readFromLocalStorage("isAuthenticated");
@@ -74,20 +70,7 @@ const UserModal = ({ setIsModalOpen }: LoginModalProps) => {
     writeToLocalStorage("isAuthenticated", "false");
     deleteFromLocalStorage("user");
     setIsModalOpen(false);
-
-    window.SalesforceInteractions.sendEvent({
-      user: {
-        attributes: {
-          name: "User Logged Out",
-          eventType: "userLoggedOut",
-          firstName,
-          lastName,
-          email,
-          phoneNumber,
-          isAnonymous: "1",
-        },
-      },
-    });
+    userLoggedOutHook(firstName, lastName, email, phoneNumber);
   };
 
   return (

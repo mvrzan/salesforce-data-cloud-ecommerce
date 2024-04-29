@@ -17,13 +17,7 @@ import { Separator } from "@twilio-paste/core/separator";
 import { Meter, MeterLabel } from "@twilio-paste/core/meter";
 
 import useBearStore from "../hooks/useBearStore";
-import { readFromLocalStorage } from "../../utils/localStorageUtil";
-
-declare const window: Window &
-  typeof globalThis & {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    SalesforceInteractions: any;
-  };
+import useSalesforceInteractions from "../hooks/useSalesforceInteractions";
 
 interface ProductDetailsModalProps {
   setIsModalOpen: (value: boolean) => void;
@@ -47,6 +41,7 @@ const ProductDetailsModal = ({
   const modalHeadingID = useUID();
   const meterID = useUID();
   const addToCart = useBearStore((state) => state.addToCart);
+  const { addToCartHook } = useSalesforceInteractions();
 
   const handleAddToCart = () => {
     const product = {
@@ -60,68 +55,7 @@ const ProductDetailsModal = ({
 
     addToCart(product);
     setIsModalOpen(false);
-
-    const userLoggedIn = JSON.parse(
-      readFromLocalStorage("isAuthenticated") as string
-    );
-
-    if (userLoggedIn) {
-      const user = JSON.parse(readFromLocalStorage("user") as string);
-
-      const attributes = {
-        eventType: "identity",
-        firstName: user.firstName,
-        lastName: user.lastName,
-        isAnonymous: "0",
-        email: user.email,
-        phoneNumber: user.phoneNumber,
-      };
-
-      // Send to Salesforce Data Cloud that a known user added a product to the cart
-      window.SalesforceInteractions.sendEvent({
-        interaction: {
-          name: window.SalesforceInteractions.CartInteractionName.AddToCart,
-          lineItem: {
-            catalogObjectType: "Product",
-            catalogObjectId: id.toString(),
-            quantity: 1,
-            price: price,
-            currency: "USD",
-            attributes: {
-              title,
-              description,
-              rating: rating.rate,
-              image,
-            },
-          },
-        },
-        user: {
-          attributes,
-        },
-      });
-
-      return;
-    }
-
-    // Send to Salesforce Data Cloud that an unknown user added a product to the cart
-    window.SalesforceInteractions.sendEvent({
-      interaction: {
-        name: window.SalesforceInteractions.CartInteractionName.AddToCart,
-        lineItem: {
-          catalogObjectType: "Product",
-          catalogObjectId: id.toString(),
-          quantity: 1,
-          price: price,
-          currency: "USD",
-          attributes: {
-            title,
-            description,
-            rating: rating.rate,
-            image,
-          },
-        },
-      },
-    });
+    addToCartHook(product);
   };
 
   return (

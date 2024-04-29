@@ -20,12 +20,7 @@ import { Paragraph } from "@twilio-paste/core/paragraph";
 import { Separator } from "@twilio-paste/core/separator";
 
 import { writeToLocalStorage } from "../../utils/localStorageUtil";
-
-declare const window: Window &
-  typeof globalThis & {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    SalesforceInteractions: any;
-  };
+import useSalesforceInteractions from "../hooks/useSalesforceInteractions";
 
 interface LoginModalProps {
   setIsModalOpen: (value: boolean) => void;
@@ -38,6 +33,7 @@ const LoginModal = ({ setIsModalOpen }: LoginModalProps) => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const { userLoggedInHook } = useSalesforceInteractions();
 
   useEffect(() => {
     if (firstName && lastName && email) {
@@ -57,20 +53,7 @@ const LoginModal = ({ setIsModalOpen }: LoginModalProps) => {
     });
 
     setIsModalOpen(false);
-
-    window.SalesforceInteractions.sendEvent({
-      user: {
-        attributes: {
-          name: "User Logged In",
-          eventType: "userLoggedIn",
-          firstName,
-          lastName,
-          email,
-          phoneNumber,
-          isAnonymous: "1",
-        },
-      },
-    });
+    userLoggedInHook(firstName, lastName, email, phoneNumber);
   };
 
   return (

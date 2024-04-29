@@ -5,13 +5,8 @@ import { Column, Grid } from "@twilio-paste/core/grid";
 
 import { Product } from "../../utils/types";
 import useBearStore from "../hooks/useBearStore";
-import { readFromLocalStorage } from "../../utils/localStorageUtil";
 
-declare const window: Window &
-  typeof globalThis & {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    SalesforceInteractions: any;
-  };
+import useSalesforceInteractions from "../hooks/useSalesforceInteractions";
 
 interface CartItemProps {
   product: Product;
@@ -19,72 +14,11 @@ interface CartItemProps {
 
 const CartItem = ({ product }: CartItemProps) => {
   const { removeItemFromCart } = useBearStore();
+  const { removeItemFromCartHook } = useSalesforceInteractions();
 
   const removeItemHandler = () => {
     removeItemFromCart(product);
-
-    const userLoggedIn = JSON.parse(
-      readFromLocalStorage("isAuthenticated") as string
-    );
-
-    if (userLoggedIn) {
-      const user = JSON.parse(readFromLocalStorage("user") as string);
-
-      const attributes = {
-        eventType: "identity",
-        firstName: user.firstName,
-        lastName: user.lastName,
-        isAnonymous: "1",
-        email: user.email,
-        phoneNumber: user.phoneNumber,
-      };
-
-      // Send to Salesforce Data Cloud that a known user removed an item from the cart
-      window.SalesforceInteractions.sendEvent({
-        interaction: {
-          name: window.SalesforceInteractions.CartInteractionName
-            .RemoveFromCart,
-          lineItem: {
-            catalogObjectType: "Product",
-            catalogObjectId: product.id.toString(),
-            quantity: product.quantity,
-            price: product.price,
-            currency: "USD",
-            attributes: {
-              title: product.title,
-              description: product.description,
-              rating: product.rating.rate,
-              image: product.image,
-            },
-          },
-        },
-        user: {
-          attributes,
-        },
-      });
-
-      return;
-    }
-
-    // Send to Salesforce Data Cloud that an unknown user removed an item from the cart
-    window.SalesforceInteractions.sendEvent({
-      interaction: {
-        name: window.SalesforceInteractions.CartInteractionName.RemoveFromCart,
-        lineItem: {
-          catalogObjectType: "Product",
-          catalogObjectId: product.id.toString(),
-          quantity: product.quantity,
-          price: product.price,
-          currency: "USD",
-          attributes: {
-            title: product.title,
-            description: product.description,
-            rating: product.rating.rate,
-            image: product.image,
-          },
-        },
-      },
-    });
+    removeItemFromCartHook(product);
   };
 
   return (

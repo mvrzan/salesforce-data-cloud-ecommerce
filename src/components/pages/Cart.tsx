@@ -14,13 +14,7 @@ import EmptyCart from "../UI/EmptyCart";
 import CheckoutModal from "../UI/CheckoutModal";
 
 import { Product } from "../../utils/types";
-import { readFromLocalStorage } from "../../utils/localStorageUtil";
-
-declare const window: Window &
-  typeof globalThis & {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    SalesforceInteractions: any;
-  };
+import useSalesforceInteractions from "../hooks/useSalesforceInteractions";
 
 const Cart = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,87 +22,17 @@ const Cart = () => {
   const navigate = useNavigate();
   const { clearCart } = useBearStore();
   const cart = useBearStore((state) => state.cart);
-
-  const totalCartValue = cart.reduce(
-    (acc: number, product: Product) => acc + product.price * product.quantity!,
-    0
-  );
+  const { clearCartHook, purchaseHook } = useSalesforceInteractions();
 
   const clearCartHandler = () => {
     clearCart();
     navigate("/home");
-
-    const userLoggedIn = JSON.parse(
-      readFromLocalStorage("isAuthenticated") as string
-    );
-
-    if (userLoggedIn) {
-      const user = JSON.parse(readFromLocalStorage("user") as string);
-
-      const attributes = {
-        eventType: "identity",
-        firstName: user.firstName,
-        lastName: user.lastName,
-        isAnonymous: "1",
-        email: user.email,
-        phoneNumber: user.phoneNumber,
-      };
-
-      // Send to Salesforce Data Cloud that a known user cleared the cart
-      window.SalesforceInteractions.sendEvent({
-        interaction: {
-          name: "Cart Cleared",
-          eventType: "cartCleared",
-        },
-        user: {
-          attributes,
-        },
-      });
-
-      return;
-    }
-
-    // Send to Salesforce Data Cloud that an unknown user cleared the cart
-    window.SalesforceInteractions.sendEvent({
-      interaction: {
-        name: "Cart Cleared",
-        eventType: "cartCleared",
-      },
-    });
+    clearCartHook();
   };
 
   const checkoutModalHandler = () => {
     setIsModalOpen(true);
-
-    const lineItems = cart.map((product: Product) => {
-      return {
-        catalogObjectType: "Product",
-        catalogObjectId: product.id.toString(),
-        quantity: product.quantity,
-        price: product.price,
-        currency: "USD",
-        attributes: {
-          title: product.title,
-          description: product.description,
-          rating: product.rating.rate,
-          image: product.image,
-        },
-      };
-    });
-
-    // Send to Salesforce Data Cloud
-    // User purchased the items in the cart
-    window.SalesforceInteractions.sendEvent({
-      interaction: {
-        name: window.SalesforceInteractions.OrderInteractionName.Purchase,
-        order: {
-          id: Math.random().toString(),
-          totalValue: totalCartValue,
-          currency: "USD",
-          lineItems,
-        },
-      },
-    });
+    purchaseHook(cart);
   };
 
   return (
