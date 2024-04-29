@@ -40,6 +40,16 @@ In addition to the above, this application loads the [Salesforce Data Cloud SDK]
 
 ## How does it work?
 
+The application is built with React so it is a Single Page Application (SPA) that connects to the FakeStore API to fetch data asynchronously. The fetched data are various e-commerce products that are then filtered and displayed to the user in various categories.
+
+During the page load process, a `<script>` tag references a Salesforce Data Cloud JavaScript SDK that gets pulled from an content delivery network (CDN) and gets loaded on the website and added to the `window` object.
+
+To track various events aforementioned previously, a custom react hook was created called [useSalesforceInteractions](/src/components/hooks/useSalesforceInteractions.ts) that returns an object with various event tracking functions.
+
+Throughout the application, the various event tracking functions are used that send the tracking data to your [Data Cloud tenant specific endpoint](https://help.salesforce.com/s/articleView?id=sf.c360_a_tenant_specific_endpoint.htm&type=5).
+
+**NOTE**: This application does not use [Salesforce sitemap](https://developer.salesforce.com/docs/atlas.en-us.c360a_api.meta/c360a_api/c360a_api_sitemap.htm). Instead, all events are manually tracked in the react application itself.
+
 ## Technologies used
 
 - [Vite](https://vitejs.dev/)
@@ -71,6 +81,12 @@ The first step is to install the project dependencies via a terminal interface b
 cd salesforce-data-cloud-ecommerce
 npm install
 ```
+
+The second step is to connect your website to Data Cloud. The instructions can be found in the [official documentation here](https://help.salesforce.com/s/articleView?id=sf.c360_a_set_up_mobile_web_connection.htm&type=5).
+
+The schema document for this web application is located in the `utils` folder. You can download the schema from [here](src/utils/web-connector-schema.json).
+
+The third step in this process is to create the appropriate data streams in Data Cloud. To do so, please follow the [official documentation here](https://help.salesforce.com/s/articleView?id=sf.c360_a_create_a_mobile_web_data_stream.htm&type=5).
 
 ### Development
 
