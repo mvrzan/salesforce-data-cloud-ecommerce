@@ -21,10 +21,9 @@ interface ProductProps {
 }
 
 const Men = () => {
-  const products = useBearStore((state) => state.products) as ProductProps[];
-  const filteredMensProducts = products?.filter(
-    (product: ProductProps) => product.category === "men's clothing"
-  );
+  const menProducts = useBearStore(
+    (state) => state.menProducts
+  ) as ProductProps[];
 
   return (
     <>
@@ -70,7 +69,7 @@ const Men = () => {
         </Flex>
       </Box>
       <Grid marginTop="space60" marginBottom="space60">
-        {filteredMensProducts?.map((product: ProductProps) => {
+        {menProducts?.map((product: ProductProps) => {
           return (
             <Grid gutter="space40" key={product.id}>
               <Column>
