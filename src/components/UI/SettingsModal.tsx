@@ -21,12 +21,6 @@ import { Separator } from "@twilio-paste/core/separator";
 
 import useScript from "../hooks/useScript";
 
-// declare const window: Window &
-//   typeof globalThis & {
-//     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-//     SalesforceInteractions: any;
-//   };
-
 interface CheckoutModalProps {
   setIsModalOpen: (value: boolean) => void;
 }
@@ -49,28 +43,6 @@ const SettingsModal = ({ setIsModalOpen }: CheckoutModalProps) => {
   const saveChangesHandler = () => {
     setIsModalOpen(false);
     configureScriptUrl(scriptUrl);
-    // const script = document.createElement("script");
-    // script.src = scriptUrl;
-
-    // script.onload = () => {
-    //   window.SalesforceInteractions.init({
-    //     consents: [
-    //       {
-    //         provider: "Test Provider",
-    //         purpose: window.SalesforceInteractions.ConsentPurpose.Tracking,
-    //         status: window.SalesforceInteractions.ConsentStatus.OptIn,
-    //       },
-    //     ],
-    //   })
-    //     .then(() => {
-    //       console.log("Salesforce Interactions initialized");
-    //     })
-    //     .catch((error: Error) => {
-    //       console.error("Salesforce Interactions failed to initialize", error);
-    //     });
-    // };
-
-    // document.head.appendChild(script);
   };
 
   return (
