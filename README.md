@@ -28,6 +28,7 @@ This project is a simple React web application built with Vite that uses the Sal
   - [Setup](#setup)
     - [Development](#development)
     - [Deployment](#deployment)
+  - [Kudos](#kudos)
   - [License](#license)
   - [Disclaimer](#disclaimer)
 
@@ -165,6 +166,10 @@ npm build
 ```
 
 By default, it uses `<root>/index.html` as the build entry point, and produces an application bundle that is suitable to be served over a static hosting service. For more details on the build step, visit the [official documentation](https://vitejs.dev/guide/build.html).
+
+## Kudos
+
+This project was inspired by [Custom Threads](https://github.com/developedbygeo/Custom-threads) repository.
 
 ## License
 
