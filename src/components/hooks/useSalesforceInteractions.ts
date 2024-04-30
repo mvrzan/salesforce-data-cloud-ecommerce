@@ -39,6 +39,10 @@ const useSalesforceInteractions = (): SalesforceInteractions => {
   );
 
   const addToCartFunction = (product: Product) => {
+    if (window.SalesforceInteractions === undefined) {
+      return;
+    }
+
     if (product === undefined) {
       return;
     }
@@ -107,6 +111,10 @@ const useSalesforceInteractions = (): SalesforceInteractions => {
   };
 
   const clearCartFunction = () => {
+    if (window.SalesforceInteractions === undefined) {
+      return;
+    }
+
     if (userLoggedIn) {
       const user = JSON.parse(readFromLocalStorage("user") as string);
 
@@ -145,6 +153,10 @@ const useSalesforceInteractions = (): SalesforceInteractions => {
   };
 
   const purchaseFunction = (cart: Product[]) => {
+    if (window.SalesforceInteractions === undefined) {
+      return;
+    }
+
     const totalCartValue = cart.reduce(
       (acc: number, product: Product) =>
         acc + product.price * product.quantity!,
@@ -215,6 +227,10 @@ const useSalesforceInteractions = (): SalesforceInteractions => {
   };
 
   const removeItemFromCartFunction = (product: Product) => {
+    if (window.SalesforceInteractions === undefined) {
+      return;
+    }
+
     if (userLoggedIn) {
       const user = JSON.parse(readFromLocalStorage("user") as string);
 
@@ -284,6 +300,10 @@ const useSalesforceInteractions = (): SalesforceInteractions => {
     price: number,
     rating: number
   ) => {
+    if (window.SalesforceInteractions === undefined) {
+      return;
+    }
+
     if (userLoggedIn) {
       const user = JSON.parse(readFromLocalStorage("user") as string);
 
@@ -347,6 +367,10 @@ const useSalesforceInteractions = (): SalesforceInteractions => {
     email: string,
     phoneNumber: string
   ) => {
+    if (window.SalesforceInteractions === undefined) {
+      return;
+    }
+
     window.SalesforceInteractions.sendEvent({
       user: {
         attributes: {
@@ -370,6 +394,10 @@ const useSalesforceInteractions = (): SalesforceInteractions => {
     email: string,
     phoneNumber: string
   ) => {
+    if (window.SalesforceInteractions === undefined) {
+      return;
+    }
+
     window.SalesforceInteractions.sendEvent({
       user: {
         attributes: {
