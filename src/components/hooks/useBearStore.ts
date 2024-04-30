@@ -54,23 +54,17 @@ const useBearStore = create<BearStore>((set) => ({
     try {
       const data = (await fetchProductData()) as FetchedProduct[];
 
-      set({ products: data });
       set({
+        products: data,
         electronicsProducts: data.filter(
           (product) => product.category === "electronics"
         ),
-      });
-      set({
         jewelryProducts: data.filter(
           (product) => product.category === "jewelery"
         ),
-      });
-      set({
         menProducts: data.filter(
           (product) => product.category === "men's clothing"
         ),
-      });
-      set({
         womenProducts: data.filter(
           (product) => product.category === "women's clothing"
         ),
