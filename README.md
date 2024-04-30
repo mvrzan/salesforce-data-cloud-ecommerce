@@ -55,6 +55,8 @@ The application is built with React so it is a Single Page Application (SPA) tha
 
 In the header of the page, there is a [settings/cog icon](#script-configuration) that opens a modal window. In there you can paste your Data Cloud tenant endpoint for the JavaScript file to be loaded onto the page. Once you click on **Save changes**, the Data Cloud JavaScript file will be fetched from the CDN and added into the `<script>` tag and added to the `window` object. This logic is executed by the [useScript](/src/components/hooks/useScript.ts) hook.
 
+Once you save your script URL, it will then be saved to your browser's local storage. On application load, the application will check the browser local storage for an existing script. This is done so you don't have to re-enter the script tag every time you open the application or refresh a page.
+
 **NOTE**: The purpose behind the settings option is to allow developers to easily install this application and add your Data Cloud tenant endpoint with ease.
 
 To track various events aforementioned previously, a custom react hook was created called [useSalesforceInteractions](/src/components/hooks/useSalesforceInteractions.ts) that returns an object with various event tracking functions.
