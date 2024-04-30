@@ -8,6 +8,7 @@ import { Button } from "@twilio-paste/core/button";
 import Sections from "./Sections";
 import UserButton from "./UserButton";
 import CartButton from "./CartButton";
+import SettingsButton from "./SettingsButton";
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ const Navigation = () => {
         <Flex vAlignContent="center" hAlignContent="center">
           <UserButton />
           <CartButton />
+          <SettingsButton />
         </Flex>
       </Flex>
     </Box>
