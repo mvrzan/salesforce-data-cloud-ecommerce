@@ -4,24 +4,6 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/data_cloud_icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.c360a.salesforce.com/beacon/c360a/92523e8b-f1ba-41b3-9295-15bff6ea14c9/scripts/c360a.min.js"></script>
-    <script>
-      SalesforceInteractions.init({
-        consents: [
-          {
-            provider: "Test Provider",
-            purpose: SalesforceInteractions.ConsentPurpose.Tracking,
-            status: SalesforceInteractions.ConsentStatus.OptIn,
-          },
-        ],
-      })
-        .then(() => {
-          console.log("Salesforce Interactions initialized");
-        })
-        .catch((error) => {
-          console.error("Salesforce Interactions failed to initialize", error);
-        });
-    </script>
     <title>Data Cloud E-Commerce</title>
   </head>
   <body>
