@@ -1,3 +1,5 @@
+import { writeToLocalStorage } from "../../utils/localStorageUtil";
+
 declare const window: Window &
   typeof globalThis & {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -28,6 +30,8 @@ const useScript = () => {
     };
 
     document.head.appendChild(script);
+
+    writeToLocalStorage("scriptUrl", url);
   };
 
   return configureScriptUrl;

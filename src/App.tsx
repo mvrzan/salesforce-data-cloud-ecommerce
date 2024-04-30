@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 
+import useScript from "./components/hooks/useScript";
 import useBearStore from "./components/hooks/useBearStore";
+import { readFromLocalStorage } from "./utils/localStorageUtil";
 import { CustomizationProvider } from "@twilio-paste/core/customization";
 
 import Men from "./components/pages/Men";
@@ -16,10 +18,25 @@ import Electronics from "./components/pages/Electronics";
 
 const App = () => {
   const { fetch } = useBearStore();
+  const configureScriptUrl = useScript();
 
   useEffect(() => {
     fetch();
-  }, [fetch]);
+
+    const existingScript = document.querySelector(
+      'script[src*="c360a.min.js"]'
+    );
+    if (existingScript) {
+      return;
+    }
+
+    const scriptUrl = readFromLocalStorage("scriptUrl");
+
+    if (scriptUrl) {
+      configureScriptUrl(scriptUrl);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <CustomizationProvider
