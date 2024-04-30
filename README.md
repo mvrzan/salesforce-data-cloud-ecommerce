@@ -21,6 +21,7 @@ This project is a simple React web application built with Vite that uses the Sal
   - [Electronics](#electronics)
   - [Cart](#cart)
   - [Not found](#not-found)
+  - [Script configuration](#script-configuration)
   - [Technologies used](#technologies-used)
 - [Configuration](#configuration)
   - [Requirements](#requirements)
@@ -51,7 +52,9 @@ In addition to the above, this application loads the [Salesforce Data Cloud SDK]
 
 The application is built with React so it is a Single Page Application (SPA) that connects to the FakeStore API to fetch data asynchronously. The fetched data are various e-commerce products that are then filtered and displayed to the user in various categories.
 
-During the page load process, a `<script>` tag references a Salesforce Data Cloud JavaScript SDK that gets pulled from an content delivery network (CDN) and gets loaded on the website and added to the `window` object.
+In the header of the page, there is a [settings/cog icon](#script-configuration) that opens a modal window. In there you can paste your Data Cloud tenant endpoint for the JavaScript file to be loaded onto the page. Once you click on **Save changes**, the Data Cloud JavaScript file will be fetched from the CDN and added into the `<script>` tag and added to the `window` object. This logic is executed by the [useScript](/src/components/hooks/useScript.ts) hook.
+
+**NOTE**: The purpose behind the settings option is to allow developers to easily install this application and add your Data Cloud tenant endpoint with ease.
 
 To track various events aforementioned previously, a custom react hook was created called [useSalesforceInteractions](/src/components/hooks/useSalesforceInteractions.ts) that returns an object with various event tracking functions.
 
@@ -94,6 +97,10 @@ Throughout the application, the various event tracking functions are used that s
 ## Not found
 
 <img width="100%" src="./screenshots/not-found.png"/>
+
+## Script configuration
+
+<img width="100%" src="./screenshots/script-configuration.png"/>
 
 ## Technologies used
 
