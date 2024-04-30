@@ -75,17 +75,21 @@ const useBearStore = create<BearStore>((set) => ({
   },
 
   addToCart: (product: Product) => {
-    set((state) => ({ numberOfItemsInCart: state.numberOfItemsInCart + 1 }));
-
     set((state) => {
       // if the cart is empty, add the product with a quantity of 1
       if (state.cart.length === 0) {
-        return { cart: [{ ...product, quantity: 1 }] };
+        return {
+          cart: [{ ...product, quantity: 1 }],
+          numberOfItemsInCart: state.numberOfItemsInCart + 1,
+        };
       }
 
       // if the cart is not empty and the product is not in the cart, add the product with a quantity of 1
       if (!state.cart.some((item) => item.id === product.id)) {
-        return { cart: [...state.cart, { ...product, quantity: 1 }] };
+        return {
+          cart: [...state.cart, { ...product, quantity: 1 }],
+          numberOfItemsInCart: state.numberOfItemsInCart + 1,
+        };
       }
 
       // if the cart is not empty, check if the product is already in the cart
@@ -105,21 +109,20 @@ const useBearStore = create<BearStore>((set) => ({
         };
       });
 
-      return { cart: [...updatedState] };
+      return {
+        cart: [...updatedState],
+        numberOfItemsInCart: state.numberOfItemsInCart + 1,
+      };
     });
   },
 
   clearCart: () => {
-    set(() => ({ numberOfItemsInCart: 0 }));
-    set(() => ({ cart: [] }));
+    set(() => ({ numberOfItemsInCart: 0, cart: [] }));
   },
 
   removeItemFromCart: (product: Product) => {
     set((state) => ({
       cart: state.cart.filter((item) => item.id !== product.id),
-    }));
-
-    set((state) => ({
       numberOfItemsInCart: state.numberOfItemsInCart - product.quantity!,
     }));
   },
