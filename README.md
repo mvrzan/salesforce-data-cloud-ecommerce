@@ -130,7 +130,7 @@ To run this application locally and successfully stream data to Data Cloud, you 
 
 ## Setup
 
-The first step is to install the project dependencies via a terminal interface by running the `npm install` in the proper folder:
+The first step is to clone the GitHub project and install the project dependencies via a terminal interface by running the `npm install` in the proper folder:
 
 ```
 cd salesforce-data-cloud-ecommerce
