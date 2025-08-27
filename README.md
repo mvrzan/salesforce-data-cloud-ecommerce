@@ -30,6 +30,7 @@ This project is a simple React web application built with Vite that uses the Sal
 - [Configuration](#configuration)
   - [Requirements](#requirements)
   - [Setup](#setup)
+    - [Salesforce](#salesforce)
     - [Development](#development)
     - [Deployment](#deployment)
 - [Kudos](#kudos)
@@ -143,11 +144,82 @@ cd salesforce-data-cloud-ecommerce
 npm install
 ```
 
-The second step is to connect your website to Data Cloud. The instructions can be found in the [official documentation here](https://developer.salesforce.com/docs/data/data-cloud-ref/guide/c360a-api-salesforce-interactions-web-sdk.html).
+### Salesforce
 
-The schema document for this web application is located in the `utils` folder. You can download the schema from [here](./salesforce/web-connector-schema.json).
+1. In Data Cloud, create a new website connector. The instructions can be found in the [official documentation here](https://developer.salesforce.com/docs/data/data-cloud-int/guide/c360-a-set-up-mobile-web-connection.html).
+2. The schema document for this web application is located in the `utils` folder. You can download the schema from [here](./salesforce/web-connector-schema.json).
+3. The third step in this process is to create the appropriate data streams in Data Cloud. To do so, please follow the [official documentation here](https://help.salesforce.com/s/articleView?id=sf.c360_a_create_a_mobile_web_data_stream.htm&type=5)
+4. Official mapping documentation can be found [here](https://developer.salesforce.com/docs/marketing/einstein-personalization/guide/integrate-salesforce-interactions-sdk.html#map-website-connector-object-fields).
 
-The third step in this process is to create the appropriate data streams in Data Cloud. To do so, please follow the [official documentation here](https://help.salesforce.com/s/articleView?id=sf.c360_a_create_a_mobile_web_data_stream.htm&type=5).
+Here you can see how the your mappings should be configured:
+
+**Identity DMO**
+
+| DLO Field Name | Behavioral Event Table | Maps To | Data Model Entities | Engagement Name             |
+| -------------- | ---------------------- | ------- | ------------------- | --------------------------- |
+| deviceId       | identity               | ➤       | Individual          | Individual Id (Primary Key) |
+| firstName      | identity               | ➤       | Individual          | First Name                  |
+| lastName       | identity               | ➤       | Individual          | Last Name                   |
+| isAnonymous    | identity               | ➤       | Individual          | Is Anonymous                |
+
+**Contact Point Email DMO**
+
+| DLO Field Name | Behavioral Event Table | Maps To | Data Model Entities | Engagement Name                      |
+| -------------- | ---------------------- | ------- | ------------------- | ------------------------------------ |
+| email          | contactPointEmail      | ➤       | Contact Point Email | Contact Point Email Id (Primary Key) |
+| email          | contactPointEmail      | ➤       | Contact Point Email | Email Address                        |
+| deviceId       | contactPointEmail      | ➤       | Contact Point Email | Party                                |
+
+**Behavioral data stream**
+
+| DLO Field Name                    | Behavioral Event Table | Maps To | Data Model Entities            | Engagement Name                                 |
+| --------------------------------- | ---------------------- | ------- | ------------------------------ | ----------------------------------------------- |
+| dateTime                          | All Event Data         | ➤       | Product Browse Engagement      | Created Date                                    |
+| interactionName                   | Catalog                | ➤       | Product Browse Engagement      | Engagement Channel Action                       |
+| dateTime                          | All Event Data         | ➤       | Product Browse Engagement      | Engagement Date Time                            |
+| eventType                         | Catalog                | ➤       | Product Browse Engagement      | Engagement Type                                 |
+| deviceId                          | All Event Data         | ➤       | Product Browse Engagement      | Individual                                      |
+| attributePersonalizationId        | Catalog                | ➤       | Product Browse Engagement      | Personalization                                 |
+| attributePersonalizationContentId | Catalog                | ➤       | Product Browse Engagement      | Personalization Content                         |
+| id                                | Catalog                | ➤       | Product Browse Engagement      | Product                                         |
+| eventId                           | All Event Data         | ➤       | Product Browse Engagement      | \*Product Browse Engagement Id Primary Key      |
+| type                              | Catalog                | ➤       | Product Browse Engagement      | Product Browse Event Type                       |
+| productSku                        | Catalog                | ➤       | Product Browse Engagement      | Product SKU                                     |
+| orderId                           | Order                  | ➤       | Product Order Engagement       | Correlation Id                                  |
+| dateTime                          | All Event Data         | ➤       | Product Order Engagement       | Created Date                                    |
+| orderCurrency                     | Order                  | ➤       | Product Order Engagement       | Currency                                        |
+| dateTime                          | All Event Data         | ➤       | Product Order Engagement       | Engagement Date Time                            |
+| eventType                         | Order                  | ➤       | Product Order Engagement       | Engagement Type                                 |
+| deviceId                          | All Event Data         | ➤       | Product Order Engagement       | Individual                                      |
+| eventId                           | All Event Data         | ➤       | Product Order Engagement       | \*Product Order Engagement Id Primary Key       |
+| adjustedProductAmount             | Order                  |         | Product Order Engagement       | Adjusted Total Product Amount                   |
+| orderTotalValue                   | Order                  | ➤       | Product Order Engagement       | Total Product Amount                            |
+| interactionName                   | Order                  |         | Product Order Engagement       | Engagement Channel Action                       |
+| dateTime                          | All Event Data         | ➤       | Sales Order Product Engagement | Created Date                                    |
+| eventType                         | Order Item             | ➤       | Sales Order Product Engagement | Engagement Type (Custom)                        |
+| deviceId                          | All Event Data         | ➤       | Sales Order Product Engagement | Individual (Custom)                             |
+| quanity                           | Order Item             | ➤       | Sales Order Product Engagement | Ordered Quantity                                |
+| catalogObjectId                   | Order Item             | ➤       | Sales Order Product Engagement | Product                                         |
+| price                             | Order Item             | ➤       | Sales Order Product Engagement | Product Price Amount                            |
+| orderEventId                      | Order Item             | ➤       | Sales Order Product Engagement | ProductOrderEngagement                          |
+| eventId                           | All Event Data         | ➤       | Sales Order Product Engagement | \*Sales Order Product Engagement Id Primary Key |
+| dateTime                          | All Event Data         | ➤       | Shopping Cart Engagement       | Created Date                                    |
+| currency                          | Cart Item              | ➤       | Shopping Cart Engagement       | Currency                                        |
+| dateTime                          | All Event Data         | ➤       | Shopping Cart Engagement       | Engagement Date Time                            |
+| event type                        | Cart Item              | ➤       | Shopping Cart Engagement       | Engagement Type                                 |
+| deviceId                          | All Event Data         | ➤       | Shopping Cart Engagement       | Individual                                      |
+| catalogObjectId                   | Cart Item              | ➤       | Shopping Cart Engagement       | Product                                         |
+| price                             | Cart Item              | ➤       | Shopping Cart Engagement       | Product Price                                   |
+| interactionName                   | Cart Item              | ➤       | Shopping Cart Engagement       | Engagement Channel Action                       |
+| quanity                           | Cart Item              | ➤       | Shopping Cart Engagement       | Product Quantity                                |
+| eventId                           | All Event Data         | ➤       | Shopping Cart Engagement       | \*Shopping Cart Engagement Id Primary Key       |
+| dateTime                          | All Event Data         | ➤       | Website Engagement             | Created Date                                    |
+| eventType                         | Browse                 | ➤       | Website Engagement             | Engagement Type                                 |
+| deviceId                          | All Event Data         | ➤       | Website Engagement             | Individual                                      |
+| interactionName                   | Browse                 | ➤       | Website Engagement             | Name                                            |
+| pageName                          | Browse                 | ➤       | Website Engagement             | Page Name                                       |
+| pageUrl                           | Browse                 | ➤       | Website Engagement             | Page URL                                        |
+| eventId                           | All Event Data         | ➤       | Website Engagement             | \*Website Engagement Id Primary Key             |
 
 ### Development
 
