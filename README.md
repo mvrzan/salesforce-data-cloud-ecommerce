@@ -15,7 +15,7 @@ This project is a simple React web application built with Vite that uses the Sal
 - [Data Cloud E-Commerce Web Tracking](#data-cloud-e-commerce-web-tracking)
 - [Table of Contents](#table-of-contents)
   - [What does it do?](#what-does-it-do)
-  - [How does it work?](#how-does-it-work)
+  - [Architecture diagram](#architecture-diagram)
   - [E-Commerce Application Demo](#e-commerce-application-demo)
   - [Landing page](#landing-page)
   - [Home](#home)
@@ -53,7 +53,9 @@ In addition to the above, this application loads the [Salesforce Data Cloud SDK]
 - when a user completes his order
 - which pages the user navigated
 
-## How does it work?
+## Architecture diagram
+
+![](./screenshots/architecture-diagram.png)
 
 The application is built with React so it is a Single Page Application (SPA) that connects to the FakeStore API to fetch data asynchronously. The fetched data are various e-commerce products that are then filtered and displayed to the user in various categories.
 
