@@ -221,6 +221,8 @@ Here you can see how the your mappings should be configured:
 | pageUrl                           | Browse                 | ➤       | Website Engagement             | Page URL                                        |
 | eventId                           | All Event Data         | ➤       | Website Engagement             | \*Website Engagement Id Primary Key             |
 
+> Note: If you want to use the User Logged In and User Logged Out events, you will have to create a custom DMO and create a relationship to the Individual DMO.
+
 ### Development
 
 To run the application locally, use the command line, navigate to the folder, ensure the dependencies are installed properly, and run the following:
