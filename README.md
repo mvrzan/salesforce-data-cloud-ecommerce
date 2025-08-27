@@ -1,6 +1,13 @@
+<p align="center">
+<p align="center">
 <a  href="https://www.salesforce.com/">
-<img  src="https://a.sfdcstatic.com/shared/images/c360-nav/salesforce-with-type-logo.svg"  alt="Salesforce"  width="250"  />
+<img  src="./screenshots/salesforce-logo.svg"  alt="Salesforce"  width="150" height="150" hspace="50"/>
 </a>
+<a href="https://www.salesforce.com/data/"><img  src="./screenshots/data-cloud-logo.png"  alt="lock_icon"  width="150" height="150" hspace="50"/></a>
+</a>
+<a href="https://react.dev/"><img  src="./screenshots/react-logo.png"  alt="lock_icon"  width="150" height="150" hspace="50"/></a>
+<p/>
+<p/>
 
 # Data Cloud E-Commerce Web Tracking
 
