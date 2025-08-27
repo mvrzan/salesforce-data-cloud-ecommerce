@@ -69,7 +69,7 @@ To track various events aforementioned previously, a custom react hook was creat
 
 Throughout the application, the various event tracking functions are used that send the tracking data to your [Data Cloud tenant specific endpoint](https://help.salesforce.com/s/articleView?id=sf.c360_a_tenant_specific_endpoint.htm&type=5).
 
-**NOTE**: This application does not use [Salesforce sitemap](https://developer.salesforce.com/docs/atlas.en-us.c360a_api.meta/c360a_api/c360a_api_sitemap.htm). Instead, all events are manually tracked in the react application itself.
+**NOTE**: This application does not use [Salesforce sitemap](https://developer.salesforce.com/docs/atlas.en-us.c360a_api.meta/c360a_api/c360a_api_sitemap.htm). Instead, all events are tracked in the react application itself.
 
 ## E-Commerce Application Demo
 
@@ -143,9 +143,9 @@ cd salesforce-data-cloud-ecommerce
 npm install
 ```
 
-The second step is to connect your website to Data Cloud. The instructions can be found in the [official documentation here](https://help.salesforce.com/s/articleView?id=sf.c360_a_set_up_mobile_web_connection.htm&type=5).
+The second step is to connect your website to Data Cloud. The instructions can be found in the [official documentation here](https://developer.salesforce.com/docs/data/data-cloud-ref/guide/c360a-api-salesforce-interactions-web-sdk.html).
 
-The schema document for this web application is located in the `utils` folder. You can download the schema from [here](src/utils/web-connector-schema.json).
+The schema document for this web application is located in the `utils` folder. You can download the schema from [here](./salesforce/web-connector-schema.json).
 
 The third step in this process is to create the appropriate data streams in Data Cloud. To do so, please follow the [official documentation here](https://help.salesforce.com/s/articleView?id=sf.c360_a_create_a_mobile_web_data_stream.htm&type=5).
 
