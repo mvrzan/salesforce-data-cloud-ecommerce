@@ -1,14 +1,7 @@
 import useBearStore from "../hooks/useBearStore";
 import { useNavigate } from "react-router-dom";
 
-import {
-  Modal,
-  ModalBody,
-  ModalHeader,
-  ModalFooter,
-  ModalHeading,
-  ModalFooterActions,
-} from "@twilio-paste/core/modal";
+import { Modal, ModalBody, ModalHeader, ModalFooter, ModalHeading, ModalFooterActions } from "@twilio-paste/core/modal";
 import { Text } from "@twilio-paste/core/text";
 import { Stack } from "@twilio-paste/core/stack";
 import { Button } from "@twilio-paste/core/button";
@@ -44,12 +37,7 @@ const CheckoutModal = ({ setIsModalOpen }: CheckoutModalProps) => {
         <Stack orientation="vertical" spacing="space20">
           <ModalHeading id={modalHeadingID}>
             You have successfully
-            <Text
-              as="span"
-              fontSize="fontSize70"
-              color="colorTextDecorative40"
-              fontWeight="fontWeightBold"
-            >
+            <Text as="span" fontSize="fontSize70" color="colorTextDecorative40" fontWeight="fontWeightBold">
               {" "}
               checked out!
             </Text>

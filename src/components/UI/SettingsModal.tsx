@@ -1,13 +1,6 @@
 import { useState, useEffect } from "react";
 
-import {
-  Modal,
-  ModalBody,
-  ModalHeader,
-  ModalFooter,
-  ModalHeading,
-  ModalFooterActions,
-} from "@twilio-paste/core/modal";
+import { Modal, ModalBody, ModalHeader, ModalFooter, ModalHeading, ModalFooterActions } from "@twilio-paste/core/modal";
 import { Box } from "@twilio-paste/box";
 import { Text } from "@twilio-paste/core/text";
 import { Label } from "@twilio-paste/core/label";
@@ -31,9 +24,7 @@ const SettingsModal = ({ setIsModalOpen }: CheckoutModalProps) => {
   const configureScriptUrl = useScript();
 
   useEffect(() => {
-    const existingScript = document.querySelector(
-      'script[src*="c360a.min.js"]'
-    );
+    const existingScript = document.querySelector('script[src*="c360a.min.js"]');
     if (existingScript) {
       setScriptUrl(existingScript.getAttribute("src")!);
       return;
@@ -58,19 +49,12 @@ const SettingsModal = ({ setIsModalOpen }: CheckoutModalProps) => {
         <Stack orientation="vertical" spacing="space20">
           <ModalHeading id={modalHeadingID}>
             This is a
-            <Text
-              as="span"
-              fontSize="fontSize70"
-              color="colorTextDecorative40"
-              fontWeight="fontWeightBold"
-            >
+            <Text as="span" fontSize="fontSize70" color="colorTextDecorative40" fontWeight="fontWeightBold">
               {" "}
               settings modal!
             </Text>
           </ModalHeading>
-          <Paragraph>
-            Here you can change your Data Cloud CDN script URL.
-          </Paragraph>
+          <Paragraph>Here you can change your Data Cloud CDN script URL.</Paragraph>
         </Stack>
       </ModalHeader>
       <ModalBody>

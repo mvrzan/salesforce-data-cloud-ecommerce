@@ -10,32 +10,16 @@ const EmptyCart = () => {
   const navigate = useNavigate();
 
   return (
-    <Box
-      width="100%"
-      height="50vh"
-      backgroundColor="colorBackgroundPrimaryWeakest"
-      borderRadius="borderRadius40"
-    >
-      <Flex
-        vertical
-        vAlignContent="center"
-        hAlignContent="center"
-        height="100%"
-      >
+    <Box width="100%" height="50vh" backgroundColor="colorBackgroundPrimaryWeakest" borderRadius="borderRadius40">
+      <Flex vertical vAlignContent="center" hAlignContent="center" height="100%">
         <Stack orientation="vertical" spacing="space60">
           <Flex vAlignContent="center" hAlignContent="center">
-            <Text
-              as="h1"
-              fontSize="fontSize110"
-              fontWeight="fontWeightExtrabold"
-              color="colorTextLink"
-            >
+            <Text as="h1" fontSize="fontSize110" fontWeight="fontWeightExtrabold" color="colorTextLink">
               Your cart is empty! 😢
             </Text>
           </Flex>
           <Text as="p" fontSize="fontSize40">
-            Let's change that and add some items to your cart! There are plenty
-            of nice things to choose from!
+            Let's change that and add some items to your cart! There are plenty of nice things to choose from!
           </Text>
           <Flex vAlignContent="center" hAlignContent="center">
             <Button variant="primary" onClick={() => navigate("/")}>

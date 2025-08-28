@@ -22,14 +22,7 @@ interface ProductProps {
   rating: { rate: number; count: number };
 }
 
-const Product = ({
-  image,
-  price,
-  title,
-  description,
-  rating,
-  id,
-}: ProductProps) => {
+const Product = ({ image, price, title, description, rating, id }: ProductProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const addToCart = useBearStore((state) => state.addToCart);
   const location = useLocation();
@@ -69,58 +62,27 @@ const Product = ({
           id={id}
         />
       )}
-      <Box
-        borderRadius="borderRadius30"
-        boxShadow="shadow"
-        margin="space40"
-        width="500px"
-        height="500px"
-      >
+      <Box borderRadius="borderRadius30" boxShadow="shadow" margin="space40" width="500px" height="500px">
         <Flex vAlignContent="center" hAlignContent="center">
           <Box marginTop="space40" marginBottom="space40">
-            <img
-              src={image}
-              alt="two people posing"
-              draggable={false}
-              height="210"
-            />
+            <img src={image} alt="two people posing" draggable={false} height="210" />
           </Box>
         </Flex>
         <Separator orientation="horizontal" verticalSpacing="space30" />
         <Stack orientation="vertical" spacing="space200">
-          <Text
-            as="h1"
-            fontSize="fontSize40"
-            fontWeight="fontWeightBold"
-            textAlign="center"
-            margin="space40"
-          >
+          <Text as="h1" fontSize="fontSize40" fontWeight="fontWeightBold" textAlign="center" margin="space40">
             <Truncate title="product title">{title}</Truncate>
           </Text>
-          <Text
-            as="h1"
-            fontSize="fontSize70"
-            fontWeight="fontWeightBold"
-            textAlign="center"
-            color="colorTextLink"
-          >
+          <Text as="h1" fontSize="fontSize70" fontWeight="fontWeightBold" textAlign="center" color="colorTextLink">
             ${price}
           </Text>
         </Stack>
         <Flex vAlignContent="center" hAlignContent="center" marginTop="space60">
           <Stack orientation="horizontal" spacing="space80">
-            <Button
-              element="BUTTON_STATIC_POSITION"
-              variant="secondary"
-              onClick={handleViewDetails}
-            >
+            <Button element="BUTTON_STATIC_POSITION" variant="secondary" onClick={handleViewDetails}>
               View Details
             </Button>
-            <Button
-              element="BUTTON_STATIC_POSITION"
-              variant="primary"
-              onClick={handleAddToCart}
-            >
+            <Button element="BUTTON_STATIC_POSITION" variant="primary" onClick={handleAddToCart}>
               Add to Cart
             </Button>
           </Stack>

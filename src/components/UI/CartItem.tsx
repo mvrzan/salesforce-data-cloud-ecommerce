@@ -22,55 +22,22 @@ const CartItem = ({ product }: CartItemProps) => {
   };
 
   return (
-    <Box
-      marginTop="space40"
-      marginBottom="space40"
-      padding="space60"
-      boxShadow="shadow"
-      borderRadius="borderRadius30"
-    >
+    <Box marginTop="space40" marginBottom="space40" padding="space60" boxShadow="shadow" borderRadius="borderRadius30">
       <Grid>
         <Column>
-          <Box
-            alignItems="center"
-            justifyContent="start"
-            marginLeft="space80"
-            display="flex"
-            height="100%"
-          >
-            <img
-              src={product.image}
-              alt="two people posing"
-              draggable={false}
-              height="100"
-            />
+          <Box alignItems="center" justifyContent="start" marginLeft="space80" display="flex" height="100%">
+            <img src={product.image} alt="two people posing" draggable={false} height="100" />
           </Box>
         </Column>
         <Column>
-          <Box
-            alignItems="center"
-            justifyContent="start"
-            display="flex"
-            height="100%"
-          >
-            <Text
-              as="h1"
-              fontSize="fontSize40"
-              fontWeight="fontWeightBold"
-              textAlign="center"
-              margin="space40"
-            >
+          <Box alignItems="center" justifyContent="start" display="flex" height="100%">
+            <Text as="h1" fontSize="fontSize40" fontWeight="fontWeightBold" textAlign="center" margin="space40">
               {product.title}
             </Text>
           </Box>
         </Column>
         <Column>
-          <Box
-            alignItems="center"
-            justifyContent="end"
-            display="flex"
-            height="100%"
-          >
+          <Box alignItems="center" justifyContent="end" display="flex" height="100%">
             <Text
               as="p"
               fontSize="fontSize60"
@@ -84,31 +51,14 @@ const CartItem = ({ product }: CartItemProps) => {
           </Box>
         </Column>
         <Column>
-          <Box
-            alignItems="center"
-            justifyContent="end"
-            display="flex"
-            height="100%"
-          >
-            <Text
-              as="p"
-              fontSize="fontSize40"
-              fontWeight="fontWeightBold"
-              textAlign="center"
-              margin="space40"
-            >
+          <Box alignItems="center" justifyContent="end" display="flex" height="100%">
+            <Text as="p" fontSize="fontSize40" fontWeight="fontWeightBold" textAlign="center" margin="space40">
               Quantity: {product.quantity}
             </Text>
           </Box>
         </Column>
         <Column>
-          <Box
-            alignItems="center"
-            justifyContent="end"
-            display="flex"
-            height="100%"
-            marginRight="space80"
-          >
+          <Box alignItems="center" justifyContent="end" display="flex" height="100%" marginRight="space80">
             <Button variant="destructive" onClick={removeItemHandler}>
               Remove
             </Button>

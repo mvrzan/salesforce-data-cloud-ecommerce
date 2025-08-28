@@ -10,9 +10,7 @@ import { Button } from "@twilio-paste/core/button";
 
 const CartButton = () => {
   const navigate = useNavigate();
-  const numberOfItemsInCart = useBearStore(
-    (state) => state.numberOfItemsInCart
-  );
+  const numberOfItemsInCart = useBearStore((state) => state.numberOfItemsInCart);
 
   return (
     <Button

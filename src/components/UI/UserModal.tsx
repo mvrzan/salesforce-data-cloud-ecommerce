@@ -1,13 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import {
-  Modal,
-  ModalHeader,
-  ModalHeading,
-  ModalBody,
-  ModalFooter,
-  ModalFooterActions,
-} from "@twilio-paste/core/modal";
+import { Modal, ModalHeader, ModalHeading, ModalBody, ModalFooter, ModalFooterActions } from "@twilio-paste/core/modal";
 import { Box } from "@twilio-paste/box";
 import { Text } from "@twilio-paste/core/text";
 import { Input } from "@twilio-paste/core/input";
@@ -19,11 +12,7 @@ import { HelpText } from "@twilio-paste/core/help-text";
 import { Paragraph } from "@twilio-paste/core/paragraph";
 import { Separator } from "@twilio-paste/core/separator";
 
-import {
-  writeToLocalStorage,
-  readFromLocalStorage,
-  deleteFromLocalStorage,
-} from "../../utils/localStorageUtil";
+import { writeToLocalStorage, readFromLocalStorage, deleteFromLocalStorage } from "../../utils/localStorageUtil";
 import useSalesforceInteractions from "../hooks/useSalesforceInteractions";
 
 interface LoginModalProps {
@@ -85,12 +74,7 @@ const UserModal = ({ setIsModalOpen }: LoginModalProps) => {
       <ModalHeader>
         <Stack orientation="vertical" spacing="space20">
           <ModalHeading id={modalHeadingID}>
-            <Text
-              as="span"
-              fontSize="fontSize70"
-              color="colorTextDecorative40"
-              fontWeight="fontWeightBold"
-            >
+            <Text as="span" fontSize="fontSize70" color="colorTextDecorative40" fontWeight="fontWeightBold">
               {userTitleName.current}'s{" "}
             </Text>
             user information

@@ -21,25 +21,13 @@ interface ProductProps {
 }
 
 const Men = () => {
-  const menProducts = useBearStore(
-    (state) => state.menProducts
-  ) as ProductProps[];
+  const menProducts = useBearStore((state) => state.menProducts) as ProductProps[];
 
   return (
     <>
       <Box width="100%" backgroundColor="colorBackgroundBrand">
-        <Flex
-          hAlignContent="between"
-          vAlignContent="center"
-          marginLeft="space80"
-          marginRight="space80"
-        >
-          <img
-            src={menBanner1}
-            alt="two people posing"
-            draggable={false}
-            height="210"
-          />
+        <Flex hAlignContent="between" vAlignContent="center" marginLeft="space80" marginRight="space80">
+          <img src={menBanner1} alt="two people posing" draggable={false} height="210" />
           <Stack orientation="vertical" spacing="space50">
             <Text
               as="p"
@@ -51,21 +39,11 @@ const Men = () => {
             >
               Everything you are looking for
             </Text>
-            <Text
-              as="p"
-              textAlign="center"
-              fontSize="fontSize40"
-              color="colorTextInverse"
-            >
+            <Text as="p" textAlign="center" fontSize="fontSize40" color="colorTextInverse">
               At your fingertips!
             </Text>
           </Stack>
-          <img
-            src={menBanner2}
-            alt="two people posing"
-            draggable={false}
-            height="210"
-          />
+          <img src={menBanner2} alt="two people posing" draggable={false} height="210" />
         </Flex>
       </Box>
       <Grid marginTop="space60" marginBottom="space60">

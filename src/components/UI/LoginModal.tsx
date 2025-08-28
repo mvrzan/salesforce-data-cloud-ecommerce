@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 
-import {
-  Modal,
-  ModalBody,
-  ModalHeader,
-  ModalFooter,
-  ModalHeading,
-  ModalFooterActions,
-} from "@twilio-paste/core/modal";
+import { Modal, ModalBody, ModalHeader, ModalFooter, ModalHeading, ModalFooterActions } from "@twilio-paste/core/modal";
 import { Box } from "@twilio-paste/box";
 import { Text } from "@twilio-paste/core/text";
 import { Input } from "@twilio-paste/core/input";
@@ -69,12 +62,7 @@ const LoginModal = ({ setIsModalOpen }: LoginModalProps) => {
         <Stack orientation="vertical" spacing="space20">
           <ModalHeading id={modalHeadingID}>
             Welcome to
-            <Text
-              as="span"
-              fontSize="fontSize70"
-              color="colorTextDecorative40"
-              fontWeight="fontWeightBold"
-            >
+            <Text as="span" fontSize="fontSize70" color="colorTextDecorative40" fontWeight="fontWeightBold">
               {" "}
               Data Cloud Shopping!
             </Text>
@@ -158,11 +146,7 @@ const LoginModal = ({ setIsModalOpen }: LoginModalProps) => {
             <Button variant="destructive" onClick={() => setIsModalOpen(false)}>
               Cancel
             </Button>
-            <Button
-              variant="primary"
-              onClick={handleLogin}
-              disabled={isButtonDisabled}
-            >
+            <Button variant="primary" onClick={handleLogin} disabled={isButtonDisabled}>
               Sign up and Log in
             </Button>
           </Stack>

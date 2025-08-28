@@ -18,24 +18,10 @@ const Landing = () => {
 
   return (
     <>
-      <Box
-        width="100%"
-        height="50vh"
-        backgroundColor="colorBackgroundPrimaryWeak"
-      >
+      <Box width="100%" height="50vh" backgroundColor="colorBackgroundPrimaryWeak">
         <Flex hAlignContent="between">
-          <img
-            src={landingModel2}
-            alt="black t-shirt"
-            draggable={false}
-            height="800"
-          />
-          <img
-            src={landingModel1}
-            alt="brown jacket"
-            draggable={false}
-            height="800"
-          />
+          <img src={landingModel2} alt="black t-shirt" draggable={false} height="800" />
+          <img src={landingModel1} alt="brown jacket" draggable={false} height="800" />
         </Flex>
       </Box>
       <Box marginTop="space120">
@@ -44,12 +30,7 @@ const Landing = () => {
             <Text as="p" textAlign="center" fontSize="fontSize60">
               HOT DEALS
             </Text>
-            <Text
-              as="h2"
-              textAlign="center"
-              fontWeight="fontWeightExtrabold"
-              fontSize="fontSize100"
-            >
+            <Text as="h2" textAlign="center" fontWeight="fontWeightExtrabold" fontSize="fontSize100">
               SALES UP TO 50%
             </Text>
           </Stack>

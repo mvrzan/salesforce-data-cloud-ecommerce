@@ -10,28 +10,16 @@ const NotFound = () => {
   const navigate = useNavigate();
 
   return (
-    <Box
-      padding="space80"
-      width="100%"
-      height="100%"
-      position="fixed"
-      backgroundColor="colorBackgroundPrimaryWeakest"
-    >
+    <Box padding="space80" width="100%" height="100%" position="fixed" backgroundColor="colorBackgroundPrimaryWeakest">
       <Flex vertical vAlignContent="center" hAlignContent="center" height="80%">
         <Stack orientation="vertical" spacing="space60">
           <Flex vAlignContent="center" hAlignContent="center">
-            <Text
-              as="h1"
-              fontSize="fontSize110"
-              fontWeight="fontWeightExtrabold"
-              color="colorTextLink"
-            >
+            <Text as="h1" fontSize="fontSize110" fontWeight="fontWeightExtrabold" color="colorTextLink">
               404 - Not Found
             </Text>
           </Flex>
           <Text as="p" fontSize="fontSize40">
-            The page you are looking for might have been removed, had its name
-            changed, or is temporarily unavailable.
+            The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
           </Text>
           <Flex vAlignContent="center" hAlignContent="center">
             <Button variant="primary" onClick={() => navigate("/")}>

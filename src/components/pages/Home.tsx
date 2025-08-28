@@ -24,32 +24,16 @@ const Home = () => {
   return (
     <>
       <Box width="100%" backgroundColor="colorBackgroundPrimaryWeak">
-        <Flex
-          hAlignContent="between"
-          vAlignContent="center"
-          marginLeft="space80"
-          marginRight="space80"
-        >
+        <Flex hAlignContent="between" vAlignContent="center" marginLeft="space80" marginRight="space80">
           <Stack orientation="vertical" spacing="space50">
-            <Text
-              as="p"
-              textAlign="left"
-              fontSize="fontSize80"
-              fontWeight="fontWeightBold"
-              verticalAlign="center"
-            >
+            <Text as="p" textAlign="left" fontSize="fontSize80" fontWeight="fontWeightBold" verticalAlign="center">
               Member Exclusive
             </Text>
             <Text as="p" textAlign="left" fontSize="fontSize40">
               15% off everything + extra $10 off for the first order!
             </Text>
           </Stack>
-          <img
-            src={homeBanner}
-            alt="two people posing"
-            draggable={false}
-            height="210"
-          />
+          <img src={homeBanner} alt="two people posing" draggable={false} height="210" />
         </Flex>
       </Box>
       <Grid marginTop="space60">

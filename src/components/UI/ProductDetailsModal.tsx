@@ -1,11 +1,4 @@
-import {
-  Modal,
-  ModalHeader,
-  ModalHeading,
-  ModalBody,
-  ModalFooter,
-  ModalFooterActions,
-} from "@twilio-paste/core/modal";
+import { Modal, ModalHeader, ModalHeading, ModalBody, ModalFooter, ModalFooterActions } from "@twilio-paste/core/modal";
 import { Box } from "@twilio-paste/core/box";
 import { Text } from "@twilio-paste/core/text";
 import { Flex } from "@twilio-paste/core/flex";
@@ -83,13 +76,7 @@ const ProductDetailsModal = ({
             </MeterLabel>
             <Meter id={meterID} value={rating.rate} minValue={0} maxValue={5} />
           </Box>
-          <Text
-            as="h1"
-            fontSize="fontSize70"
-            fontWeight="fontWeightBold"
-            textAlign="center"
-            color="colorTextLink"
-          >
+          <Text as="h1" fontSize="fontSize70" fontWeight="fontWeightBold" textAlign="center" color="colorTextLink">
             ${price}
           </Text>
         </Flex>

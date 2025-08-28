@@ -20,45 +20,22 @@ interface ProductProps {
 }
 
 const Women = () => {
-  const womenProducts = useBearStore(
-    (state) => state.womenProducts
-  ) as ProductProps[];
+  const womenProducts = useBearStore((state) => state.womenProducts) as ProductProps[];
 
   return (
     <>
       <Box width="100%" backgroundColor="colorBackgroundBrandHighlightWeakest">
-        <Flex
-          hAlignContent="between"
-          vAlignContent="center"
-          marginLeft="space80"
-          marginRight="space80"
-        >
-          <img
-            src={womenBanner1}
-            alt="two people posing"
-            draggable={false}
-            height="210"
-          />
+        <Flex hAlignContent="between" vAlignContent="center" marginLeft="space80" marginRight="space80">
+          <img src={womenBanner1} alt="two people posing" draggable={false} height="210" />
           <Stack orientation="vertical" spacing="space50">
-            <Text
-              as="p"
-              textAlign="center"
-              fontSize="fontSize80"
-              fontWeight="fontWeightBold"
-              verticalAlign="center"
-            >
+            <Text as="p" textAlign="center" fontSize="fontSize80" fontWeight="fontWeightBold" verticalAlign="center">
               Fancy a night out? Chilling by the beach?
             </Text>
             <Text as="p" textAlign="center" fontSize="fontSize40">
               Stylish - anytime, anywhere
             </Text>
           </Stack>
-          <img
-            src={womenBanner2}
-            alt="two people posing"
-            draggable={false}
-            height="210"
-          />
+          <img src={womenBanner2} alt="two people posing" draggable={false} height="210" />
         </Flex>
       </Box>
       <Grid marginTop="space60">

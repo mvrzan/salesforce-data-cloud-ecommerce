@@ -19,33 +19,15 @@ interface ProductProps {
 }
 
 const Electronics = () => {
-  const electronicsProducts = useBearStore(
-    (state) => state.electronicsProducts
-  ) as ProductProps[];
+  const electronicsProducts = useBearStore((state) => state.electronicsProducts) as ProductProps[];
 
   return (
     <>
       <Box width="100%" backgroundColor="colorBackgroundPrimaryWeak">
-        <Flex
-          hAlignContent="between"
-          vAlignContent="center"
-          marginLeft="space80"
-          marginRight="space80"
-        >
-          <img
-            src={electronicsBanner1}
-            alt="two people posing"
-            draggable={false}
-            height="210"
-          />
+        <Flex hAlignContent="between" vAlignContent="center" marginLeft="space80" marginRight="space80">
+          <img src={electronicsBanner1} alt="two people posing" draggable={false} height="210" />
           <Stack orientation="vertical" spacing="space50">
-            <Text
-              as="p"
-              textAlign="left"
-              fontSize="fontSize80"
-              fontWeight="fontWeightBold"
-              verticalAlign="center"
-            >
+            <Text as="p" textAlign="left" fontSize="fontSize80" fontWeight="fontWeightBold" verticalAlign="center">
               The latest tech has landed!
             </Text>
             <Text as="p" textAlign="left" fontSize="fontSize40">

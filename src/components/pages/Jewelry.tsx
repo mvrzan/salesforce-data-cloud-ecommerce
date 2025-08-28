@@ -19,19 +19,12 @@ interface ProductProps {
 }
 
 const Jewelry = () => {
-  const jewelryProducts = useBearStore(
-    (state) => state.jewelryProducts
-  ) as ProductProps[];
+  const jewelryProducts = useBearStore((state) => state.jewelryProducts) as ProductProps[];
 
   return (
     <>
       <Box width="100%" backgroundColor="colorBackgroundStrongest">
-        <Flex
-          hAlignContent="between"
-          vAlignContent="center"
-          marginLeft="space80"
-          marginRight="space80"
-        >
+        <Flex hAlignContent="between" vAlignContent="center" marginLeft="space80" marginRight="space80">
           <Stack orientation="vertical" spacing="space50">
             <Text
               as="p"
@@ -44,30 +37,15 @@ const Jewelry = () => {
               Jewelry!
             </Text>
             <Stack orientation="vertical" spacing="space40">
-              <Text
-                as="p"
-                textAlign={"left"}
-                fontSize="fontSize40"
-                color="colorTextInverse"
-              >
+              <Text as="p" textAlign={"left"} fontSize="fontSize40" color="colorTextInverse">
                 A fancy necklace or casual earrings?
               </Text>
-              <Text
-                as="p"
-                textAlign="left"
-                fontSize="fontSize40"
-                color="colorTextInverse"
-              >
+              <Text as="p" textAlign="left" fontSize="fontSize40" color="colorTextInverse">
                 We have got just the thing!
               </Text>
             </Stack>
           </Stack>
-          <img
-            src={jewelryBanner}
-            alt="two people posing"
-            draggable={false}
-            height="210"
-          />
+          <img src={jewelryBanner} alt="two people posing" draggable={false} height="210" />
         </Flex>
       </Box>
       <Grid marginTop="space60">

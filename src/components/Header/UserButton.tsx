@@ -33,9 +33,7 @@ const UserButton = () => {
   return (
     <Box marginRight="space40">
       {isModalOpen && <LoginModal setIsModalOpen={setIsModalOpen} />}
-      {isModalOpen && isAuthenticated && (
-        <UserModal setIsModalOpen={setIsModalOpen} />
-      )}
+      {isModalOpen && isAuthenticated && <UserModal setIsModalOpen={setIsModalOpen} />}
       <Button
         variant="primary_icon"
         size="reset"
@@ -46,20 +44,12 @@ const UserButton = () => {
         {isAuthenticated ? (
           <>
             {userName}
-            <UserIcon
-              decorative={false}
-              title="User settings"
-              size="sizeIcon80"
-            />
+            <UserIcon decorative={false} title="User settings" size="sizeIcon80" />
           </>
         ) : (
           <>
             Log in
-            <LogInIcon
-              decorative={false}
-              title="User settings"
-              size="sizeIcon80"
-            />
+            <LogInIcon decorative={false} title="User settings" size="sizeIcon80" />
           </>
         )}
       </Button>
