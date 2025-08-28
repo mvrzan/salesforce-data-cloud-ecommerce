@@ -77,12 +77,12 @@ const SettingsModal = ({ setIsModalOpen }: CheckoutModalProps) => {
         <Stack orientation="vertical" spacing="space40">
           <Separator orientation="horizontal" verticalSpacing="space10" />
           <Box>
-            <Label htmlFor="first_name" required>
+            <Label htmlFor="script_url" id="script_url-label" required>
               Data Cloud CDN Script URL
             </Label>
             <Input
               id="script_url"
-              name="script_url_input_field"
+              name="script_url"
               placeholder="https://cdn.c360a.salesforce.com/beacon/c360a/xxxx/scripts/c360a.min.js"
               type="text"
               value={scriptUrl}
