@@ -1,42 +1,18 @@
 import { Product } from "../../utils/types";
 import { readFromLocalStorage } from "../../utils/localStorageUtil";
 
-declare const window: Window &
-  typeof globalThis & {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    SalesforceInteractions: any;
-  };
-
 interface SalesforceInteractions {
   addToCartHook: (product: Product) => void;
   clearCartHook: () => void;
   purchaseHook: (cart: Product[]) => void;
-  viewDetailsHook: (
-    id: number,
-    title: string,
-    currentPath: string,
-    price: number,
-    rating: number
-  ) => void;
+  viewDetailsHook: (id: number, title: string, currentPath: string, price: number, rating: number) => void;
   removeItemFromCartHook: (product: Product) => void;
-  userLoggedInHook: (
-    firstName: string,
-    lastName: string,
-    email: string,
-    phoneNumber: string
-  ) => void;
-  userLoggedOutHook: (
-    firstName: string,
-    lastName: string,
-    email: string,
-    phoneNumber: string
-  ) => void;
+  userLoggedInHook: (firstName: string, lastName: string, email: string, phoneNumber: string) => void;
+  userLoggedOutHook: (firstName: string, lastName: string, email: string, phoneNumber: string) => void;
 }
 
 const useSalesforceInteractions = (): SalesforceInteractions => {
-  const userLoggedIn = JSON.parse(
-    readFromLocalStorage("isAuthenticated") as string
-  );
+  const userLoggedIn = JSON.parse(readFromLocalStorage("isAuthenticated") as string);
 
   const addToCartFunction = (product: Product) => {
     if (window.SalesforceInteractions === undefined) {
@@ -157,11 +133,7 @@ const useSalesforceInteractions = (): SalesforceInteractions => {
       return;
     }
 
-    const totalCartValue = cart.reduce(
-      (acc: number, product: Product) =>
-        acc + product.price * product.quantity!,
-      0
-    );
+    const totalCartValue = cart.reduce((acc: number, product: Product) => acc + product.price * product.quantity!, 0);
 
     const lineItems = cart.map((product: Product) => {
       return {
@@ -246,8 +218,7 @@ const useSalesforceInteractions = (): SalesforceInteractions => {
       // Send to Salesforce Data Cloud that a known user removed an item from the cart
       window.SalesforceInteractions.sendEvent({
         interaction: {
-          name: window.SalesforceInteractions.CartInteractionName
-            .RemoveFromCart,
+          name: window.SalesforceInteractions.CartInteractionName.RemoveFromCart,
           lineItem: {
             catalogObjectType: "Product",
             catalogObjectId: product.id.toString(),
@@ -293,13 +264,7 @@ const useSalesforceInteractions = (): SalesforceInteractions => {
     return;
   };
 
-  const viewDetailsFunction = (
-    id: number,
-    title: string,
-    currentPath: string,
-    price: number,
-    rating: number
-  ) => {
+  const viewDetailsFunction = (id: number, title: string, currentPath: string, price: number, rating: number) => {
     if (window.SalesforceInteractions === undefined) {
       return;
     }
@@ -319,8 +284,7 @@ const useSalesforceInteractions = (): SalesforceInteractions => {
       // Send to Salesforce Data Cloud that a known user viewed a product
       window.SalesforceInteractions.sendEvent({
         interaction: {
-          name: window.SalesforceInteractions.CatalogObjectInteractionName
-            .ViewCatalogObject,
+          name: window.SalesforceInteractions.CatalogObjectInteractionName.ViewCatalogObject,
           catalogObject: {
             type: "Product",
             id: id.toString(),
@@ -343,8 +307,7 @@ const useSalesforceInteractions = (): SalesforceInteractions => {
     // Send to Salesforce Data Cloud that an unknown user viewed the details of a product
     window.SalesforceInteractions.sendEvent({
       interaction: {
-        name: window.SalesforceInteractions.CatalogObjectInteractionName
-          .ViewCatalogObject,
+        name: window.SalesforceInteractions.CatalogObjectInteractionName.ViewCatalogObject,
         catalogObject: {
           type: "Product",
           id: id.toString(),
@@ -361,12 +324,7 @@ const useSalesforceInteractions = (): SalesforceInteractions => {
     return;
   };
 
-  const userLoggedInFunction = (
-    firstName: string,
-    lastName: string,
-    email: string,
-    phoneNumber: string
-  ) => {
+  const userLoggedInFunction = (firstName: string, lastName: string, email: string, phoneNumber: string) => {
     if (window.SalesforceInteractions === undefined) {
       return;
     }
@@ -388,12 +346,7 @@ const useSalesforceInteractions = (): SalesforceInteractions => {
     return;
   };
 
-  const userLoggedOutFunction = (
-    firstName: string,
-    lastName: string,
-    email: string,
-    phoneNumber: string
-  ) => {
+  const userLoggedOutFunction = (firstName: string, lastName: string, email: string, phoneNumber: string) => {
     if (window.SalesforceInteractions === undefined) {
       return;
     }
