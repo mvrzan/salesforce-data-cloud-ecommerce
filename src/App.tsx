@@ -23,9 +23,8 @@ const App = () => {
   useEffect(() => {
     fetch();
 
-    const existingScript = document.querySelector(
-      'script[src*="c360a.min.js"]'
-    );
+    const existingScript = document.querySelector('script[src*="c360a.min.js"]');
+
     if (existingScript) {
       return;
     }
@@ -35,7 +34,6 @@ const App = () => {
     if (scriptUrl) {
       configureScriptUrl(scriptUrl);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
